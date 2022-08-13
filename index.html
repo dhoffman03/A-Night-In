@@ -6,57 +6,63 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="./assests/style.css">
     <title>A Night In</title>
 </head>
 
-<body class="bg-orange-800 text-bg-orange 100">
+<body>
     <!-- header -->
-    <header class="bg-slate-700 text-white h-20 p=6">
+    <header class="h-20 p=6">
         <h1 class="float-left ml-5 my-5 text-2xl">A Night In</h1>
-    <!-- navbar -->
-    <nav>
-        <li class="float-right mr-5 my-7 hover:text-amber-400"><a href="#save"></a>Saved Recipes</li>
-    </nav>
-</header>
+        <!-- navbar -->
+        <nav>
+            <li class="float-right mr-5 my-7"><a href="#save"></a>Saved Recipes</li>
+        </nav>
+    </header>
     <!-- search boxes -->
     <!-- food search box -->
     <section class="search-cards display: flex justify-center space-x-7 mt-20">
     <div class="foodCard">
-        <form class="search-form bg-slate-700 p-7 rounded-lg" id="food-form">
-            <select class="format-input rounded-md hover:bg-orange-600" id="food-search">
+        <form class="search-form p-7 rounded-lg custom-form" id="food-form">
+            <select class="format-input rounded-md custom-input" id="food-search">
                 <option value="" disabled selected>Select a Meal Type</option>
                 <option value="dinner">Dinner</option>
                 <option value="snack">Snack</option>
                 <option value="dessert">Dessert</option>
             </select>
-            <button class="btn form bg-orange-500 p-2 rounded-lg ml-2 hover:bg-sky-900 text-white">Search</button>
+            <button class="btn form p-2 rounded-lg ml-2 custom-btn">Search</button>
         </form>
     </div>
     <!-- drink search box -->
     <div>
-        <form class="search-form bg-slate-700 p-7 rounded-lg" id="drink-form">
-            <select class="format-input rounded-md hover:bg-orange-600" id="drink-search">
+        <form class="search-form p-7 rounded-lg custom-form" id="drink-form">
+            <select class="format-input rounded-md custom-input" id="drink-search">
                 <option value="" disabled selected>Select a Drink Type</option>
                 <option value="alcohol">Alcohol-Cocktail</option>
                 <option value="alcohol-free">Alcohol-free</option>
             </select>
-            <button class="btn form bg-orange-500 p-2 rounded-lg ml-2 hover:bg-sky-900 text-white">Search</button>
+            <button class="btn form p-2 rounded-lg ml-2 custom-btn">Search</button>
         </form>
     </div>
     <!-- movie search box -->
     <div>
-        <form class="search-form bg-slate-700 p-7 rounded-lg" id="movie-form">
-            <select class="format-input rounded-md hover:bg-orange-600" id="movie-search">
+        <form class="search-form p-7 rounded-lg custom-form" id="movie-form">
+            <select class="format-input rounded-md custom-input" id="movie-search">
                 <option value="" disabled selected>Select a Genre</option>
                 <option value="action">Action</option>
                 <option value="adventure">Adventure</option>
                 <option value="comedy">Comedy</option>
             </select>
-            <button class="btn form bg-orange-500 p-2 rounded-lg ml-2 hover:bg-sky-900 text-white">Search</button>
+            <button class="btn form p-2 rounded-lg ml-2 custom-btn">Search</button>
         </form>
     </div>
 </section>
+
+<!-- footer -->
+<footer class="text-center leading-10 w-screen fixed bottom-0">© Group 7</footer>
+
 <script src="./assests/tailwind.config.js"></script>
 </body>
 
