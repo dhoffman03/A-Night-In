@@ -21,6 +21,7 @@
             <li class="float-right mr-5 my-7"><a href="#save"></a>Saved Recipes</li>
         </nav>
     </header>
+    <h1 class="text-2xl text-center m-10">Need a night in? We can help you make your own dinner theater: just fill out the searches below, and get ready for the perfect night in!</h1>
     <!-- search boxes -->
     <!-- food search box -->
     <section class="search-cards display: flex justify-center space-x-7 mt-20">
@@ -38,11 +39,19 @@
     <!-- drink search box -->
     <div>
         <form class="search-form p-7 rounded-lg custom-form" id="drink-form">
-            <select class="format-input rounded-md custom-input" id="drink-search">
+            <h1 class="text-2xl">Pick Your Drink</h1>
+            <p>Enter your favorite spirit or drink ingredient</p>
+            <br>
+            <input type="text" class="rounded-md p-2" id="drink-search-input" placeholder=" Bourbon">
+            <label for="drink-search-input">Pick ingredient</label>
+            <br>
+            <br>
+            <select class="format-input rounded-md custom-input p-2" id="drink-search">
                 <option value="" disabled selected>Select a Drink Type</option>
                 <option value="alcohol">Alcohol-Cocktail</option>
                 <option value="alcohol-free">Alcohol-free</option>
             </select>
+            <label for="drink-search">Pick Style</label>
             <button class="btn form p-2 rounded-lg ml-2 custom-btn">Search</button>
         </form>
     </div>
