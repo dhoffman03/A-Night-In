@@ -7,7 +7,6 @@ var requestURL =
   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action,adventure";
 
 
-
 fetch(requestURL, {
   method: "Get",
   credential: "same-origin",
