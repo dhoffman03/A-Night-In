@@ -6,6 +6,7 @@ var movieAPIKey = "k_4qje020e";
 var requestURL =
   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action,adventure";
 
+
 fetch(requestURL, {
   method: "Get",
   credential: "same-origin",
@@ -13,6 +14,7 @@ fetch(requestURL, {
 })
   .then(function (response) {
     return response.json();
+
 
 //Reed script sandbox
 var drinkAPIKey = "5618241aea289752355d852d3165a903";
@@ -72,7 +74,7 @@ var drinkFormSubmitHandler = function (event) {
           var recipeImage = $(data.hits[0].recipe.images);
           // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
 
-          
+
         });
       }
     });
