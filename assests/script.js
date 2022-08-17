@@ -6,6 +6,17 @@ var movieAPIKey = "k_4qje020e";
 var requestURL =
   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action,adventure";
 
+function getInput() {
+    $("#movie-search").each(function() {
+        var input = $(this).text();
+        console.log(input)
+
+        if(getInput === "Select a Genre") {
+            console.log("select a genre")
+        };
+    });
+}
+getInput();
 
 fetch(requestURL, {
   method: "Get",
@@ -14,7 +25,24 @@ fetch(requestURL, {
 })
   .then(function (response) {
     return response.json();
-  });
+<<<<<<< HEAD
+
+})
+  .then(function(data){
+    console.log(data.results);
+
+    var movieTitle = data.results[0].title;
+    console.log(movieTitle)
+    var movieImage = data.results[0].image;
+    console.log(movieImage)
+    var movieRating = data.results[0].contentRating;
+    console.log(movieRating)
+    var moviePlot = data.results[0].plot;
+    console.log(moviePlot)
+    var movieGenres = data.results[0].genres;
+    console.log(movieGenres)
+});
+>>>>>>> ce311622bcd2d88c2b45ef4965b8ab553659bcf3
 
 //Reed script sandbox
 var drinkAPIKey = "5618241aea289752355d852d3165a903";

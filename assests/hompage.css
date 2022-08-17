@@ -1,0 +1,36 @@
+/* Declare colors*/
+:root {
+    --dark: #070e17ff;
+    --blue: #3b465db0;
+    --burnt: #af5e5385;
+    --cream: #baaca3;
+}
+
+/* Set font, backgrond, and text-color of page */
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: #192635;
+    color: var(--cream);
+}
+
+/* Set font, background and with of title */
+h1 {
+    background-color: var(--burnt);
+    font-family: 'Oranienbaum', serif;
+    width: 900px;
+}
+
+/* Add border to image */
+.custom-img {
+    border: 2px solid #404451;
+}
+
+/* Add background color */
+.custom-bg {
+    background-color: var(--blue);
+}
+
+/* Set background of button */
+#btn {
+    background-color: var(--burnt);
+}

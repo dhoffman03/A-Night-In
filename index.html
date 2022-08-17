@@ -29,7 +29,10 @@
     <section class="search-cards display: flex justify-center flex-wrap space-x-7 mt-20">
     <div class="foodCard">
         <form class="search-form p-7 m-5 rounded-lg custom-form" id="food-form">
-            <select class="format-input rounded-md custom-input" id="food-search">
+            <h1 class="text-2xl">Pick Your Meal</h1>
+            <p>Choose the type of meal you're feeling tonight</p>
+            <br>
+            <select class="format-input rounded-md custom-input p-2" id="food-search">
                 <option value="" disabled selected>Select a Meal Type</option>
                 <option value="dinner">Dinner</option>
                 <option value="snack">Snack</option>
@@ -60,7 +63,10 @@
     <!-- movie search box -->
     <div>
         <form class="search-form p-7 m-5 rounded-lg custom-form" id="movie-form">
-            <select class="format-input rounded-md custom-input" id="movie-search">
+            <h1 class="text-2xl">Pick Your Genre</h1>
+            <p>Select a genre you want to watch</p>
+            <br>
+            <select class="format-input rounded-md custom-input p-2" id="movie-search">
                 <option value="" disabled selected>Select a Genre</option>
                 <option value="action">Action</option>
                 <option value="adventure">Adventure</option>
@@ -70,12 +76,19 @@
         </form>
     </div>
 </section>
+
+<!-- append results to page -->
+<!-- food recipe results -->
 <section>
     <div id="food-recipe-print"></div>
 </section>
+
+<!-- drink recipe results -->
 <section>
     <div id="drink-recipe-print"></div>
 </section>
+
+<!-- movie results -->
 <section>
     <div id="movie-results-print"></div>
 </section>
