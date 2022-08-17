@@ -3,11 +3,11 @@
 //Dymond script sandbox
 
 //Gia script sandbox
-var movieAPIKey = "k_4qje020e";
+var movieAPIKey = "k_qc3umdyg";
 var movieContentEl = document.querySelector("#movie-results-print")
 
 var requestURL =
-  "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action,adventure";
+  "https://imdb-api.com/API/AdvancedSearch/k_qc3umdyg/?genres=action";
 
 function getInput() {
   $("#movie-search").each(function () {
@@ -86,10 +86,10 @@ fetch(requestURL, {
     return response.json();
   })
   .then(function (data) {
-    console.log(data.results);
+    console.log(data);
 
     for (var i = 0; i < data.results.length; i++) {
-      // console.log(data.results[i]);
+      console.log(data.results[i]);
       displayMovie(data.results[i]);
 
       // var movieTitle = data.results[0].title;
