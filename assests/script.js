@@ -23,54 +23,53 @@ function displayMovie(movieResults) {
   console.log(movieResults);
 
   var resultCard = document.createElement("div");
-  resultCard.classList.add("movie-card", "background-dark", "text-light", "search-form", "p-7", "m-5", "rounded-lg", "custom-form");
+  resultCard.classList.add("movie-card", "background-dark", "text-light"); 
+  // "search-form", "p-7", "m-5", "rounded-lg", "custom-form");
 
   var resultBody = document.createElement("div");
   resultBody.classList.add("movie-card-body");
   resultCard.append(resultBody);
 
+  var movieImage = document.createElement ("img");
+  movieImage.src = movieResults.image;
+  movieImage.classList.add("movie-image");
+  console.log(movieImage)
+
   var movieTitle = document.createElement("h1");
   movieTitle.textContent = movieResults.title;
   movieTitle.classList.add("movie-title")
-  console.log(movieTitle)
 
-  var imageCard = document.createElement("div");
-  imageCard.classList.add("movie-image")
+  var bodyContentEl = document.createElement("div")
+  bodyContentEl.classList.add("movie-content");
 
-  var movieImage = document.createElement ("img")
-  movieImage.src = movieResults.image;
-  movieImage.setAttribute("height", "25%")
-  movieImage.setAttribute("width", "15%")
-  imageCard.append(movieImage)
-  console.log(movieImage)
-
-
-  var bodyContent = document.createElement("p")
+  var bodyContent = document.createElement("p");
   if (movieResults.contentRating) {
     bodyContent.innerHTML +=
-      "<strong>Rating:</strong> " + movieResults.contentRating + "<br/>";
+      "Rating: " + movieResults.contentRating + "<br/>";
   } else {
     bodyContent.innerHTML +=
-      "<strong>Ratings:</strong> No Results";
+      "Ratings: No Results";
   }
 
   if (movieResults.genres) {
     bodyContent.innerHTML +=
-      "<strong>Genres:</strong> " + movieResults.genres + "<br/>";
+      "Genres: " + movieResults.genres + "<br/>";
   } else {
     bodyContent.innerHTML +=
-      "<strong>Genres:</strong> No Results";
+      "Genres: No Results";
   }
 
   if (movieResults.plot) {
     bodyContent.innerHTML +=
-      "<strong>Plot:</strong> " + movieResults.plot + "<br/>";
+      "Plot: " + movieResults.plot + "<br/>";
   } else {
     bodyContent.innerHTML +=
-      "<strong>Plot:</strong> No Results";
+      "Plot: No Results";
   }
 
-  resultBody.append(movieTitle, imageCard, bodyContent)
+  bodyContentEl.append(bodyContent)
+
+  resultBody.append(movieImage, movieTitle, bodyContentEl)
 
   movieContentEl.append(resultCard)
 }
