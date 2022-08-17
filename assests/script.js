@@ -27,14 +27,18 @@ fetch(requestURL, {
     return response.json();
 })
   .then(function(data){
-    console.log(data);
+    console.log(data.results);
 
-    var movieTitle = $(data.results[0].title);
+    var movieTitle = data.results[0].title;
     console.log(movieTitle)
-    var movieImage = $(data.results.image);
-    var movieRating = $(data.results.contentRating);
-    var moviePlot = $(data.results.plot);
-    var movieGenres = $(data.results.genres);
+    var movieImage = data.results[0].image;
+    console.log(movieImage)
+    var movieRating = data.results[0].contentRating;
+    console.log(movieRating)
+    var moviePlot = data.results[0].plot;
+    console.log(moviePlot)
+    var movieGenres = data.results[0].genres;
+    console.log(movieGenres)
 });
 
 //Reed script sandbox
