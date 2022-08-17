@@ -1,49 +1,110 @@
 // //for the tabs /RM
 
+//Dymond script sandbox
 
-// //Dymond script sandbox
+//Gia script sandbox
+var movieAPIKey = "k_qc3umdyg";
+var movieContentEl = document.querySelector("#movie-results-print")
 
-// //Gia script sandbox
-// var movieAPIKey = "k_4qje020e";
+var requestURL =
+  "https://imdb-api.com/API/AdvancedSearch/k_qc3umdyg/?genres=action";
 
-// var requestURL =
-//   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action,adventure";
+function getInput() {
+  $("#movie-search").each(function () {
+    var input = $(this).text();
+    console.log(input)
 
-// function getInput() {
-//     $("#movie-search").each(function() {
-//         var input = $(this).text();
-//         console.log(input)
+    if (getInput === "Select a Genre") {
+      console.log("select a genre")
+    };
+  });
+}
+getInput();
 
-//         if(getInput === "Select a Genre") {
-//             console.log("select a genre")
-//         };
-//     });
-// }
-// getInput();
+function displayMovie(movieResults) {
+  console.log(movieResults);
 
-// fetch(requestURL, {
-//   method: "Get",
-//   credential: "same-origin",
-//   redirect: "follow",
-// })
-//   .then(function (response) {
-//     return response.json();
+  var resultCard = document.createElement("div");
+  resultCard.classList.add("movie-card", "background-dark", "text-light"); 
+  // "search-form", "p-7", "m-5", "rounded-lg", "custom-form");
 
-// })
-//   .then(function(data){
-//     console.log(data.results);
+  var resultBody = document.createElement("div");
+  resultBody.classList.add("movie-card-body");
+  resultCard.append(resultBody);
 
-//     var movieTitle = data.results[0].title;
-//     console.log(movieTitle)
-//     var movieImage = data.results[0].image;
-//     console.log(movieImage)
-//     var movieRating = data.results[0].contentRating;
-//     console.log(movieRating)
-//     var moviePlot = data.results[0].plot;
-//     console.log(moviePlot)
-//     var movieGenres = data.results[0].genres;
-//     console.log(movieGenres)
-// });
+  var movieImage = document.createElement ("img");
+  movieImage.src = movieResults.image;
+  movieImage.classList.add("movie-image");
+  console.log(movieImage)
+
+  var movieTitle = document.createElement("h1");
+  movieTitle.textContent = movieResults.title;
+  movieTitle.classList.add("movie-title")
+
+  var bodyContentEl = document.createElement("div")
+  bodyContentEl.classList.add("movie-content");
+
+  var bodyContent = document.createElement("p");
+  if (movieResults.contentRating) {
+    bodyContent.innerHTML +=
+      "Rating: " + movieResults.contentRating + "<br/>";
+  } else {
+    bodyContent.innerHTML +=
+      "Ratings: No Results";
+  }
+
+  if (movieResults.genres) {
+    bodyContent.innerHTML +=
+      "Genres: " + movieResults.genres + "<br/>";
+  } else {
+    bodyContent.innerHTML +=
+      "Genres: No Results";
+  }
+
+  if (movieResults.plot) {
+    bodyContent.innerHTML +=
+      "Plot: " + movieResults.plot + "<br/>";
+  } else {
+    bodyContent.innerHTML +=
+      "Plot: No Results";
+  }
+
+  bodyContentEl.append(bodyContent)
+
+  resultBody.append(movieImage, movieTitle, bodyContentEl)
+
+  movieContentEl.append(resultCard)
+}
+
+
+fetch(requestURL, {
+  method: "Get",
+  credential: "same-origin",
+  redirect: "follow",
+})
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+
+    for (var i = 0; i < data.results.length; i++) {
+      console.log(data.results[i]);
+      displayMovie(data.results[i]);
+
+      // var movieTitle = data.results[0].title;
+      // console.log(movieTitle)
+      // var movieImage = data.results[0].image;
+      // console.log(movieImage)
+      // var movieRating = data.results[0].contentRating;
+      // console.log(movieRating)
+      // var moviePlot = data.results[0].plot;
+      // console.log(moviePlot)
+      // var movieGenres = data.results[0].genres;
+      // console.log(movieGenres)
+
+    };
+  });
 
 //Reed script sandbox
 var drinkAPIKey = "5618241aea289752355d852d3165a903";
@@ -59,6 +120,7 @@ var querydrinkAPI =
   "&app_id=f77c6a8d&app_key=5618241aea289752355d852d3165a903&health=" +
   userDrinkStyleInput +
   "&imageSize=REGULAR";
+
 var drinkDisplayDiv = $("#drink-recipe-print")
   //a place to store the saved drinks(a fridge @_@;)
   var drinkSearchHistory = [];
