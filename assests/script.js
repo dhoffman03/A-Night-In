@@ -14,7 +14,7 @@ fetch(requestURL, {
 })
   .then(function (response) {
     return response.json();
-
+  });
 
 //Reed script sandbox
 var drinkAPIKey = "5618241aea289752355d852d3165a903";
@@ -41,7 +41,7 @@ fetch(querydrinkAPI).then(function (response) {
       console.log(data);
     });
   }
-});
+}); //RM added this
 
 //for handling submission of the drink form
 var drinkFormSubmitHandler = function (event) {
@@ -72,8 +72,14 @@ var drinkFormSubmitHandler = function (event) {
           var recipeSteps = $(data.hits[0].recipe.ingredients);
           var recipeSource = $(data.hits[0].recipe.source);
           var recipeImage = $(data.hits[0].recipe.images);
-          // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
+            // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
+          var drinkPrint = $("#drink-recipe-print");
 
+          //display the recipe
+          drinkPrint.text(recipeName);
+          drinkPrint.text(ingredientsList);
+          drinkPrint.text(recipeSteps);
+          drinkPrint.text(recipeSource);
 
         });
       }
