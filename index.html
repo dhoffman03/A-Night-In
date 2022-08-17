@@ -1,104 +1,201 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- linked css -->
 
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="./assests/style.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./assests/style.css" />
     <title>A Night In</title>
-</head>
+  </head>
 
-<body>
+  <body>
     <!-- header -->
     <header class="h-20 p=6">
-        <h1 class="float-left ml-5 my-5 text-2xl">A Night In</h1>
-        <!-- navbar -->
-        <nav>
-            <li class="float-right mr-5 my-7"><a href="#save"></a>Saved Recipes</li>
-        </nav>
+      <h1 class="float-left ml-5 my-5 text-2xl">A Night In</h1>
+      <!-- navbar -->
+      <nav>
+        <li class="float-right mr-5 my-7"><a href="#save"></a>Saved Recipes</li>
+      </nav>
     </header>
-    <h1 class="text-2xl text-center m-10">Need a night in? We can help you make your own dinner theater: just fill out the searches below, and get ready for the perfect night in!</h1>
+     <!--collapsable side panel for the history-->
+     <section>
+     <div id="historySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">Food</a>
+        <a href="#">Drinks</a>
+        <a href="#">Movies</a>
+      </div>
+      
+      <div id="main">
+        <button class="openbtn" onclick="openNav()">&#9776; Saved Recipes</button>
+        <!-- <h2>Click above</h2>
+        <p>to see your saved recipes!</p> -->
+      </div>
+    </section>
+    <!--Page Header-->
+    <h1 class="text-2xl text-center m-10">
+      Need a night in? We can help you make your own dinner theater: just fill
+      out the searches below, and get ready for the perfect night in!
+    </h1>
+
     <!-- search boxes -->
     <!-- food search box -->
-    <section class="search-cards display: flex justify-center flex-wrap space-x-7 mt-20">
-    <div class="foodCard">
+    <section
+      class="search-cards display: flex justify-center flex-wrap space-x-7 mt-20"
+    >
+      <div class="foodCard">
         <form class="search-form p-7 m-5 rounded-lg custom-form" id="food-form">
-            <h1 class="text-2xl">Pick Your Meal</h1>
-            <p>Choose the type of meal you're feeling tonight</p>
-            <br>
-            <select class="format-input rounded-md custom-input p-2" id="food-search">
-                <option value="" disabled selected>Select a Meal Type</option>
-                <option value="dinner">Dinner</option>
-                <option value="snack">Snack</option>
-                <option value="dessert">Dessert</option>
-            </select>
-            <button id="food-btn" class="btn p-2 rounded-lg ml-2 custom-btn">Search</button>
+          <h1 class="text-2xl">Pick Your Meal</h1>
+          <p>Choose the type of meal you're feeling tonight</p>
+          <br />
+          <select
+            class="format-input rounded-md custom-input p-2"
+            id="food-search"
+          >
+            <option value="" disabled selected>Select a Meal Type</option>
+            <option value="dinner">Dinner</option>
+            <option value="snack">Snack</option>
+            <option value="dessert">Dessert</option>
+          </select>
+          <button id="food-btn" class="btn p-2 rounded-lg ml-2 custom-btn">
+            Search
+          </button>
         </form>
-    </div>
-    <!-- drink search box -->
-    <div>
-        <form class="search-form p-7 m-5 rounded-lg custom-form" id="drink-form">
-            <h1 class="text-2xl">Pick Your Drink</h1>
-            <p>Enter your favorite spirit or drink ingredient</p>
-            <br>
-            <input type="text" class="rounded-md p-2" id="drink-search-input" placeholder=" Bourbon">
-            <label for="drink-search-input">Pick ingredient</label>
-            <br>
-            <br>
-            <select class="format-input rounded-md custom-input p-2" id="drink-search">
-                <option value="" disabled selected>Select a Drink Type</option>
-                <option value="alcohol">Alcohol-Cocktail</option>
-                <option value="alcohol-free">Alcohol-free</option>
-            </select>
-            <label for="drink-search">Pick Style</label>
-            <button id="drink-btn" class="btn p-2 rounded-lg ml-2 custom-btn">Search</button>
+      </div>
+      <!-- drink search box -->
+      <div>
+        <form
+          class="search-form p-7 m-5 rounded-lg custom-form"
+          id="drink-form"
+        >
+          <h1 class="text-2xl">Pick Your Drink</h1>
+          <p>Enter your favorite spirit or drink ingredient</p>
+          <br />
+          <input
+            type="text"
+            class="rounded-md p-2"
+            id="drink-search-input"
+            placeholder=" Bourbon"
+          />
+          <label for="drink-search-input">Pick ingredient</label>
+          <br />
+          <br />
+          <select
+            class="format-input rounded-md custom-input p-2"
+            id="drink-search"
+          >
+            <option value="" disabled selected>Select a Drink Type</option>
+            <option value="alcohol-cocktail">Alcohol-Cocktail</option>
+            <option value="alcohol-free">Alcohol-free</option>
+          </select>
+          <label for="drink-search">Pick Style</label>
+          <button id="drink-btn" class="btn p-2 rounded-lg ml-2 custom-btn">
+            Search
+          </button>
         </form>
-    </div>
-    <!-- movie search box -->
-    <div>
-        <form class="search-form p-7 m-5 rounded-lg custom-form" id="movie-form">
-            <h1 class="text-2xl">Pick Your Genre</h1>
-            <p>Select a genre you want to watch</p>
-            <br>
-            <select class="format-input rounded-md custom-input p-2" id="movie-search">
-                <option value="" disabled selected>Select a Genre</option>
-                <option value="action">Action</option>
-                <option value="adventure">Adventure</option>
-                <option value="comedy">Comedy</option>
-            </select>
-            <button id="movie-btn" class="btn p-2 rounded-lg ml-2 custom-btn">Search</button>
+      </div>
+      <!-- movie search box -->
+      <div>
+        <form
+          class="search-form p-7 m-5 rounded-lg custom-form"
+          id="movie-form"
+        >
+          <h1 class="text-2xl">Pick Your Genre</h1>
+          <p>Select a genre you want to watch</p>
+          <br />
+          <select
+            class="format-input rounded-md custom-input p-2"
+            id="movie-search"
+          >
+            <option value="" disabled selected>Select a Genre</option>
+            <option value="action">Action</option>
+            <option value="adventure">Adventure</option>
+            <option value="comedy">Comedy</option>
+          </select>
+          <button id="movie-btn" class="btn p-2 rounded-lg ml-2 custom-btn">
+            Search
+          </button>
         </form>
-    </div>
-</section>
+      </div>
+    </section>
+    <!-- append results to page -->
+    <!--Tabs for navigation-->
+    <section>
+      <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'food')">Food</button>
+        <button class="tablinks" onclick="openTab(event, 'drinks')">
+          Drinks
+        </button>
+        <button class="tablinks" onclick="openTab(event, 'movies')">
+          Movies
+        </button>
+      </div>
 
-<!-- append results to page -->
-<!-- food recipe results -->
-<section>
-    <div id="food-recipe-print"></div>
-</section>
+      <div id="food" class="tabcontent">
+        <h3>Food</h3>
+        <p>Sample Text here.</p>
+        <!-- food results -->
+        <div id="food-recipe-print"></div>
+      </div>
+      <div id="drinks" class="tabcontent">
+        <h2 id="drink-title">Drinks</h2>
+        <ol id="drink-ingre-list">
+        </ol>
 
-<!-- drink recipe results -->
-<section>
-    <div id="drink-recipe-print"></div>
-</section>
+        <!-- drink recipe results -->
+        <div id="drink-recipe-print"></div>
+      </div>
+      <div id="movies" class="tabcontent">
+        <h3>Movies</h3>
+        <p>Sample text here.</p>
+        <!-- movie results -->
+        <div id="movie-results-print"></div>
+      </div>
+    </section>
 
-<!-- movie results -->
-<section>
-    <div id="movie-results-print"></div>
-</section>
+    <!-- footer -->
+    <footer class="text-center leading-10 w-screen fixed bottom-0">
+      © Group 7
+    </footer>
 
-<!-- footer -->
-<footer class="text-center leading-10 w-screen fixed bottom-0">© Group 7</footer>
-
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
-<script src="./assests/script.js"></script>
-
-</body>
-
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="./assests/script.js"></script>
+    <script>
+        function openTab(evt, tabName) {
+  var i, tabcontent, tablinks;
+  tabcontent = document.getElementsByClassName("tabcontent");
+  for (i = 0; i < tabcontent.length; i++) {
+    tabcontent[i].style.display = "none";
+  }
+  tablinks = document.getElementsByClassName("tablinks");
+  for (i = 0; i < tablinks.length; i++) {
+    tablinks[i].className = tablinks[i].className.replace(" active", "");
+  }
+  document.getElementById(tabName).style.display = "block";
+  evt.currentTarget.className += " active";
+}
+    </script>
+    <script>
+        function openNav() {
+          document.getElementById("historySidebar").style.width = "250px";
+          document.getElementById("main").style.marginLeft = "250px";
+        }
+        
+        function closeNav() {
+          document.getElementById("historySidebar").style.width = "0";
+          document.getElementById("main").style.marginLeft= "0";
+        }
+        </script>
+  </body>
 </html>

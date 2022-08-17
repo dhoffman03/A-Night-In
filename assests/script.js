@@ -1,45 +1,49 @@
-//Dymond script sandbox
+// //for the tabs /RM
 
-//Gia script sandbox
-var movieAPIKey = "k_4qje020e";
 
-var requestURL =
-  "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action,adventure";
+// //Dymond script sandbox
 
-function getInput() {
-    $("#movie-search").each(function() {
-        var input = $(this).text();
-        console.log(input)
+// //Gia script sandbox
+// var movieAPIKey = "k_4qje020e";
 
-        if(getInput === "Select a Genre") {
-            console.log("select a genre")
-        };
-    });
-}
-getInput();
+// var requestURL =
+//   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action,adventure";
 
-fetch(requestURL, {
-  method: "Get",
-  credential: "same-origin",
-  redirect: "follow",
-})
-  .then(function (response) {
-    return response.json();
-})
-  .then(function(data){
-    console.log(data.results);
+// function getInput() {
+//     $("#movie-search").each(function() {
+//         var input = $(this).text();
+//         console.log(input)
 
-    var movieTitle = data.results[0].title;
-    console.log(movieTitle)
-    var movieImage = data.results[0].image;
-    console.log(movieImage)
-    var movieRating = data.results[0].contentRating;
-    console.log(movieRating)
-    var moviePlot = data.results[0].plot;
-    console.log(moviePlot)
-    var movieGenres = data.results[0].genres;
-    console.log(movieGenres)
-});
+//         if(getInput === "Select a Genre") {
+//             console.log("select a genre")
+//         };
+//     });
+// }
+// getInput();
+
+// fetch(requestURL, {
+//   method: "Get",
+//   credential: "same-origin",
+//   redirect: "follow",
+// })
+//   .then(function (response) {
+//     return response.json();
+
+// })
+//   .then(function(data){
+//     console.log(data.results);
+
+//     var movieTitle = data.results[0].title;
+//     console.log(movieTitle)
+//     var movieImage = data.results[0].image;
+//     console.log(movieImage)
+//     var movieRating = data.results[0].contentRating;
+//     console.log(movieRating)
+//     var moviePlot = data.results[0].plot;
+//     console.log(moviePlot)
+//     var movieGenres = data.results[0].genres;
+//     console.log(movieGenres)
+// });
 
 //Reed script sandbox
 var drinkAPIKey = "5618241aea289752355d852d3165a903";
@@ -66,9 +70,9 @@ fetch(querydrinkAPI).then(function (response) {
       console.log(data);
     });
   }
-});
+}); 
 
-//for handling submission of the drink form
+// for handling submission of the drink form
 var drinkFormSubmitHandler = function (event) {
   event.preventDefault();
 
@@ -83,27 +87,38 @@ var drinkFormSubmitHandler = function (event) {
     userDrinkStyleInput +
     "&imageSize=REGULAR";
 
-  if (userDrinkInput || userDrinkStyleInput) {
+  if (userDrinkInput && userDrinkStyleInput) {
     fetch(querydrinkAPI).then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
           //check how the process is going
           console.log(data);
-
+          console.log(userDrinkInput);
+          console.log(userDrinkStyleInput);
           //here are the objetcts we need for the site
-          var recipeName = $(data.hits[0].recipe.label);
+          var recipeName = data.hits[0].recipe.label;
           //ing. list,images and steps will need functions to get at all the objects within
-          var ingredientsList = $(data.hits[0].recipe.ingredientLines);
-          var recipeSteps = $(data.hits[0].recipe.ingredients);
-          var recipeSource = $(data.hits[0].recipe.source);
-          var recipeImage = $(data.hits[0].recipe.images);
-          // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
-
+          var ingredientsList = data.hits[0].recipe.ingredientLines;
+          var recipeSteps = data.hits[0].recipe.ingredients;
+          var recipeSource = data.hits[0].recipe.source;
+          var recipeImage = data.hits[0].recipe.images;
+            // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
+          var drinkPrint = $("#drink-recipe-print");
+          console.log(recipeName);
+          //display the recipe
+          $("#drink-title").text(recipeName);
+          // drinkPrint.text(ingredientsList);
+          // drinkPrint.text(recipeSteps);
+          // drinkPrint.text(recipeSource);
 
         });
       }
     });
   }
 };
+
+//need functions to split and print the ingredients and recipes steps (those are string arrays)
+
+//need local history 
 
 drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);
