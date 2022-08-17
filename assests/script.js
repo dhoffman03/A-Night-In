@@ -121,8 +121,9 @@ var querydrinkAPI =
   userDrinkStyleInput +
   "&imageSize=REGULAR";
 
-//a place to store the saved drinks(a fridge @_@;)
-var drinkSearchHistory = [];
+var drinkDisplayDiv = $("#drink-recipe-print")
+  //a place to store the saved drinks(a fridge @_@;)
+  var drinkSearchHistory = [];
 
 //for tracking the data during the build
 fetch(querydrinkAPI).then(function (response) {
@@ -148,12 +149,12 @@ var drinkFormSubmitHandler = function (event) {
     userDrinkStyleInput +
     "&imageSize=REGULAR";
 
-  if (userDrinkInput && userDrinkStyleInput) {
+  if (userDrinkInput || userDrinkStyleInput) {
     fetch(querydrinkAPI).then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
           //check how the process is going
-          console.log(data);
+          console.log(data.hits[0].recipe.ingredientLines);
           console.log(userDrinkInput);
           console.log(userDrinkStyleInput);
           //here are the objetcts we need for the site
@@ -171,6 +172,14 @@ var drinkFormSubmitHandler = function (event) {
           // drinkPrint.text(ingredientsList);
           // drinkPrint.text(recipeSteps);
           // drinkPrint.text(recipeSource);
+          let ingeLinesLength = ingredientsList.length;
+          let text = "<ul>"
+          for(let i = 0; i <ingeLinesLength; i++) {
+            text += "<li>" + ingredientsList[i] + "</li<br>";
+          }
+          text += "</ul>";
+
+          document.getElementById("drink-recipe-print").innerHTML = text;
 
         });
       }
