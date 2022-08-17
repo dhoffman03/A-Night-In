@@ -1,3 +1,5 @@
+// //for the tabs /RM
+
 //Dymond script sandbox
 
 //Gia script sandbox
@@ -129,9 +131,9 @@ fetch(querydrinkAPI).then(function (response) {
       console.log(data);
     });
   }
-});
+}); 
 
-//for handling submission of the drink form
+// for handling submission of the drink form
 var drinkFormSubmitHandler = function (event) {
   event.preventDefault();
 
@@ -146,27 +148,38 @@ var drinkFormSubmitHandler = function (event) {
     userDrinkStyleInput +
     "&imageSize=REGULAR";
 
-  if (userDrinkInput || userDrinkStyleInput) {
+  if (userDrinkInput && userDrinkStyleInput) {
     fetch(querydrinkAPI).then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
           //check how the process is going
           console.log(data);
-
+          console.log(userDrinkInput);
+          console.log(userDrinkStyleInput);
           //here are the objetcts we need for the site
-          var recipeName = $(data.hits[0].recipe.label);
+          var recipeName = data.hits[0].recipe.label;
           //ing. list,images and steps will need functions to get at all the objects within
-          var ingredientsList = $(data.hits[0].recipe.ingredientLines);
-          var recipeSteps = $(data.hits[0].recipe.ingredients);
-          var recipeSource = $(data.hits[0].recipe.source);
-          var recipeImage = $(data.hits[0].recipe.images);
-          // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
-
+          var ingredientsList = data.hits[0].recipe.ingredientLines;
+          var recipeSteps = data.hits[0].recipe.ingredients;
+          var recipeSource = data.hits[0].recipe.source;
+          var recipeImage = data.hits[0].recipe.images;
+            // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
+          var drinkPrint = $("#drink-recipe-print");
+          console.log(recipeName);
+          //display the recipe
+          $("#drink-title").text(recipeName);
+          // drinkPrint.text(ingredientsList);
+          // drinkPrint.text(recipeSteps);
+          // drinkPrint.text(recipeSource);
 
         });
       }
     });
   }
 };
+
+//need functions to split and print the ingredients and recipes steps (those are string arrays)
+
+//need local history 
 
 drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);
