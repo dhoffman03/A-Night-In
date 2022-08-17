@@ -60,3 +60,21 @@ header, footer{
 .custom-btn:hover {
     background-color: var(--blue);
 }
+
+/* movie appended results */
+.movie-card-body {
+    display:flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    text-align: center;
+}
+
+.movie-title {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.movie-image {
+    display:flex;
+    justify-content: center;
+}

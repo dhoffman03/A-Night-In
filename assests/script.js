@@ -2,21 +2,79 @@
 
 //Gia script sandbox
 var movieAPIKey = "k_4qje020e";
+var movieContentEl = document.querySelector("#movie-results-print")
 
 var requestURL =
   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action,adventure";
 
 function getInput() {
-    $("#movie-search").each(function() {
-        var input = $(this).text();
-        console.log(input)
+  $("#movie-search").each(function () {
+    var input = $(this).text();
+    console.log(input)
 
-        if(getInput === "Select a Genre") {
-            console.log("select a genre")
-        };
-    });
+    if (getInput === "Select a Genre") {
+      console.log("select a genre")
+    };
+  });
 }
 getInput();
+
+function displayMovie(movieResults) {
+  console.log(movieResults);
+
+  var resultCard = document.createElement("div");
+  resultCard.classList.add("movie-card", "background-dark", "text-light", "search-form", "p-7", "m-5", "rounded-lg", "custom-form");
+
+  var resultBody = document.createElement("div");
+  resultBody.classList.add("movie-card-body");
+  resultCard.append(resultBody);
+
+  var movieTitle = document.createElement("h1");
+  movieTitle.textContent = movieResults.title;
+  movieTitle.classList.add("movie-title")
+  console.log(movieTitle)
+
+  var imageCard = document.createElement("div");
+  imageCard.classList.add("movie-image")
+
+  var movieImage = document.createElement ("img")
+  movieImage.src = movieResults.image;
+  movieImage.setAttribute("height", "25%")
+  movieImage.setAttribute("width", "15%")
+  imageCard.append(movieImage)
+  console.log(movieImage)
+
+
+  var bodyContent = document.createElement("p")
+  if (movieResults.contentRating) {
+    bodyContent.innerHTML +=
+      "<strong>Rating:</strong> " + movieResults.contentRating + "<br/>";
+  } else {
+    bodyContent.innerHTML +=
+      "<strong>Ratings:</strong> No Results";
+  }
+
+  if (movieResults.genres) {
+    bodyContent.innerHTML +=
+      "<strong>Genres:</strong> " + movieResults.genres + "<br/>";
+  } else {
+    bodyContent.innerHTML +=
+      "<strong>Genres:</strong> No Results";
+  }
+
+  if (movieResults.plot) {
+    bodyContent.innerHTML +=
+      "<strong>Plot:</strong> " + movieResults.plot + "<br/>";
+  } else {
+    bodyContent.innerHTML +=
+      "<strong>Plot:</strong> No Results";
+  }
+
+  resultBody.append(movieTitle, imageCard, bodyContent)
+
+  movieContentEl.append(resultCard)
+}
+
 
 fetch(requestURL, {
   method: "Get",
@@ -25,21 +83,27 @@ fetch(requestURL, {
 })
   .then(function (response) {
     return response.json();
-})
-  .then(function(data){
+  })
+  .then(function (data) {
     console.log(data.results);
 
-    var movieTitle = data.results[0].title;
-    console.log(movieTitle)
-    var movieImage = data.results[0].image;
-    console.log(movieImage)
-    var movieRating = data.results[0].contentRating;
-    console.log(movieRating)
-    var moviePlot = data.results[0].plot;
-    console.log(moviePlot)
-    var movieGenres = data.results[0].genres;
-    console.log(movieGenres)
-});
+    for (var i = 0; i < data.results.length; i++) {
+      // console.log(data.results[i]);
+      displayMovie(data.results[i]);
+
+      // var movieTitle = data.results[0].title;
+      // console.log(movieTitle)
+      // var movieImage = data.results[0].image;
+      // console.log(movieImage)
+      // var movieRating = data.results[0].contentRating;
+      // console.log(movieRating)
+      // var moviePlot = data.results[0].plot;
+      // console.log(moviePlot)
+      // var movieGenres = data.results[0].genres;
+      // console.log(movieGenres)
+
+    };
+  });
 
 //Reed script sandbox
 var drinkAPIKey = "5618241aea289752355d852d3165a903";
@@ -56,8 +120,8 @@ var querydrinkAPI =
   userDrinkStyleInput +
   "&imageSize=REGULAR";
 
-  //a place to store the saved drinks(a fridge @_@;)
-  var drinkSearchHistory = [];
+//a place to store the saved drinks(a fridge @_@;)
+var drinkSearchHistory = [];
 
 //for tracking the data during the build
 fetch(querydrinkAPI).then(function (response) {
