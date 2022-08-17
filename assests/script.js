@@ -1,3 +1,6 @@
+//for the tabs /RM
+
+
 //Dymond script sandbox
 
 //Gia script sandbox
@@ -25,7 +28,6 @@ fetch(requestURL, {
 })
   .then(function (response) {
     return response.json();
-<<<<<<< HEAD
 
 })
   .then(function(data){
@@ -42,7 +44,6 @@ fetch(requestURL, {
     var movieGenres = data.results[0].genres;
     console.log(movieGenres)
 });
->>>>>>> ce311622bcd2d88c2b45ef4965b8ab553659bcf3
 
 //Reed script sandbox
 var drinkAPIKey = "5618241aea289752355d852d3165a903";
@@ -72,47 +73,47 @@ fetch(querydrinkAPI).then(function (response) {
 }); //RM added this
 
 //for handling submission of the drink form
-var drinkFormSubmitHandler = function (event) {
-  event.preventDefault();
+// var drinkFormSubmitHandler = function (event) {
+//   event.preventDefault();
 
-  //to get the user input data
-  var userDrinkInput = drinkSearchInputEl.value.trim();
-  var userDrinkStyleInput = drinkStyleSearchEl.value.trim();
-  //to get the API
-  var querydrinkAPI =
-    "https://api.edamam.com/api/recipes/v2?type=public&q=" +
-    userDrinkInput +
-    "&app_id=f77c6a8d&app_key=5618241aea289752355d852d3165a903&health=" +
-    userDrinkStyleInput +
-    "&imageSize=REGULAR";
+//   //to get the user input data
+//   var userDrinkInput = drinkSearchInputEl.value.trim();
+//   var userDrinkStyleInput = drinkStyleSearchEl.value.trim();
+//   //to get the API
+//   var querydrinkAPI =
+//     "https://api.edamam.com/api/recipes/v2?type=public&q=" +
+//     userDrinkInput +
+//     "&app_id=f77c6a8d&app_key=5618241aea289752355d852d3165a903&health=" +
+//     userDrinkStyleInput +
+//     "&imageSize=REGULAR";
 
-  if (userDrinkInput || userDrinkStyleInput) {
-    fetch(querydrinkAPI).then(function (response) {
-      if (response.ok) {
-        response.json().then(function (data) {
-          //check how the process is going
-          console.log(data);
+//   if (userDrinkInput || userDrinkStyleInput) {
+//     fetch(querydrinkAPI).then(function (response) {
+//       if (response.ok) {
+//         response.json().then(function (data) {
+//           //check how the process is going
+//           console.log(data);
 
-          //here are the objetcts we need for the site
-          var recipeName = $(data.hits[0].recipe.label);
-          //ing. list,images and steps will need functions to get at all the objects within
-          var ingredientsList = $(data.hits[0].recipe.ingredientLines);
-          var recipeSteps = $(data.hits[0].recipe.ingredients);
-          var recipeSource = $(data.hits[0].recipe.source);
-          var recipeImage = $(data.hits[0].recipe.images);
-            // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
-          var drinkPrint = $("#drink-recipe-print");
+//           //here are the objetcts we need for the site
+//           var recipeName = $(data.hits[0].recipe.label);
+//           //ing. list,images and steps will need functions to get at all the objects within
+//           var ingredientsList = $(data.hits[0].recipe.ingredientLines);
+//           var recipeSteps = $(data.hits[0].recipe.ingredients);
+//           var recipeSource = $(data.hits[0].recipe.source);
+//           var recipeImage = $(data.hits[0].recipe.images);
+//             // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
+//           var drinkPrint = $("#drink-recipe-print");
 
-          //display the recipe
-          drinkPrint.text(recipeName);
-          drinkPrint.text(ingredientsList);
-          drinkPrint.text(recipeSteps);
-          drinkPrint.text(recipeSource);
+//           //display the recipe
+//           drinkPrint.text(recipeName);
+//           drinkPrint.text(ingredientsList);
+//           drinkPrint.text(recipeSteps);
+//           drinkPrint.text(recipeSource);
 
-        });
-      }
-    });
-  }
-};
+//         });
+//       }
+//     });
+//   }
+// };
 
-drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);
+// drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);
