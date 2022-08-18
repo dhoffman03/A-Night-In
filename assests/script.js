@@ -1,6 +1,14 @@
 // //for the tabs /RM
 
 //Dymond script sandbox
+var foodApiKey = "&app_key=d20058a43c19a20e533d6b06c2c26156";
+var foodAppId = "&app_id=9fc7bc31"
+var userFoodInput = $("#food-search-input")
+var userFoodType = $("#food-search")
+
+var foodURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" +  + foodAppId + foodApiKey + "&cuisineType=" + + "&mealType=Dinner&imageSize=REGULAR&random=true&field=image&field=url&field=ingredients";
+
+
 
 //Gia script sandbox
 var movieAPIKey = "k_qc3umdyg";
@@ -191,11 +199,19 @@ var drinkFormSubmitHandler = function (event) {
           document.getElementById("drink-image").innerHTML = drinkPic;
           drinkSource.text("Recipe from " + recipeSource + ".");
           document.getElementById("drink-link").innerHTML = source;
+<<<<<<< HEAD
 
           localStorage.setItem("drink-recipe", recipeName);
           //add new drink to the drink array
           drinkSearchHistory.push(recipeName);
 
+=======
+
+          localStorage.setItem("drink-recipe", recipeName);
+          //add new drink to the drink array
+          drinkSearchHistory.push(recipeName);
+
+>>>>>>> 04d8b8341062d5a76b37929fdb2cd71e556c2f5d
           //store updates 
           storedDrinks();
 
@@ -208,6 +224,7 @@ var drinkFormSubmitHandler = function (event) {
 function init() {
   //get stored drinks from localStorage
   var storedDrinks = JSON.parse(localStorage.getItem("drink-recipe"));
+<<<<<<< HEAD
 
   // if drinks were retrieved from storage, update the drinks to the array
   if (storedDrinks !== null) {
@@ -215,6 +232,15 @@ function init() {
   }
 }
 
+=======
+
+  // if drinks were retrieved from storage, update the drinks to the array
+  if (storedDrinks !== null) {
+    drinkSearchHistory = storedDrinks;
+  }
+}
+
+>>>>>>> 04d8b8341062d5a76b37929fdb2cd71e556c2f5d
 function storedDrinks() {
   //stringify and set key in local storage array
   localStorage.setItem("drink-recipe", JSON.stringify(drinkSearchHistory));
