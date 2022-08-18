@@ -172,6 +172,16 @@ input {
     color: var(--burnt-light);
 }
 
+.save-recipe {
+    color: var(--burnt-light);
+    background-color: var(--dark);
+}
+
+.save-recipe:hover {
+    color: var(--amber);
+}
+
+/* hover color for link button*/
 .drink-ext-link:hover {
     color: var(--amber);
 }
