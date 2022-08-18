@@ -179,6 +179,7 @@ function searchMovieAPI(genreInputVal) {
   //   };
   // });
 
+//getting value of user input
 function handleMovieSearchSubmit(event) {
   event.preventDefault();
 
@@ -187,6 +188,7 @@ function handleMovieSearchSubmit(event) {
   searchMovieAPI(genreInputVal)
 }
 
+//when submit the form gets the user input and get 
 movieForm.addEventListener("submit", handleMovieSearchSubmit)
 
 //Reed script sandbox
