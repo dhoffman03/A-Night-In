@@ -129,7 +129,7 @@ var querydrinkAPI =
   userDrinkStyleInput +
   "&imageSize=REGULAR";
 
-var drinkDisplayDiv = $("#drink-recipe-print")
+// var drinkDisplayDiv = $("#drink-ingredients")
   //a place to store the saved drinks(a fridge @_@;)
   var drinkSearchHistory = [];
 
@@ -155,39 +155,52 @@ var drinkFormSubmitHandler = function (event) {
     userDrinkInput +
     "&app_id=f77c6a8d&app_key=5618241aea289752355d852d3165a903&health=" +
     userDrinkStyleInput +
-    "&imageSize=REGULAR";
+    "&random=true";
 
   if (userDrinkInput || userDrinkStyleInput) {
     fetch(querydrinkAPI).then(function (response) {
       if (response.ok) {
         response.json().then(function (data) {
           //check how the process is going
-          console.log(data.hits[0].recipe.ingredientLines);
+          console.log(data.hits[0].recipe.images.SMALL.url);
           console.log(userDrinkInput);
           console.log(userDrinkStyleInput);
           //here are the objetcts we need for the site
           var recipeName = data.hits[0].recipe.label;
           //ing. list,images and steps will need functions to get at all the objects within
           var ingredientsList = data.hits[0].recipe.ingredientLines;
-          var recipeSteps = data.hits[0].recipe.ingredients;
           var recipeSource = data.hits[0].recipe.source;
-          var recipeImage = data.hits[0].recipe.images;
-            // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
-          var drinkPrint = $("#drink-recipe-print");
+          var drinkImage = data.hits[0].recipe.images.SMALL.url;
+          var drinkLink = data.hits[0].recipe.url;
+          var drinkSource = $("#drink-source");
+          var drinkIngredients = $("#drink-ingredients");
           console.log(recipeName);
+
           //display the recipe
           $("#drink-title").text(recipeName);
-          // drinkPrint.text(ingredientsList);
-          // drinkPrint.text(recipeSteps);
-          // drinkPrint.text(recipeSource);
-          let ingeLinesLength = ingredientsList.length;
-          let text = "<ul>"
-          for(let i = 0; i <ingeLinesLength; i++) {
-            text += "<li>" + ingredientsList[i] + "</li<br>";
-          }
-          text += "</ul>";
 
-          document.getElementById("drink-recipe-print").innerHTML = text;
+          //ingredient list
+          let ingeLinesLength = ingredientsList.length;
+          let drinkPic = "<img class='drink-pic rounded-lg' src=" + drinkImage + " alt='Drink image'>"
+          let ingreText = "<ul>"
+          let source = "<a class='drink-ext-link' href=" + drinkLink + ">Click here for complete directions.</a>"
+          for(let i = 0; i <ingeLinesLength; i++) {
+            ingreText += "<li>" + ingredientsList[i] + "</li<br>";
+          }
+          ingreText += "</ul>";
+          //display list
+          document.getElementById("drink-ingredients").innerHTML = ingreText;
+          //a line for the source link
+          document.getElementById("drink-image").innerHTML = drinkPic;
+          drinkSource.text("Recipe from " + recipeSource + ".");
+          document.getElementById("drink-link").innerHTML = source;
+
+          localStorage.setItem("drink-recipe", recipeName);
+          //add new drink to the drink array
+          drinkSearchHistory.push(recipeName);
+
+          //store updates 
+          storedDrinks();
 
         });
       }
@@ -195,8 +208,21 @@ var drinkFormSubmitHandler = function (event) {
   }
 };
 
-//need functions to split and print the ingredients and recipes steps (those are string arrays)
+function init() {
+  //get stored drinks from localStorage
+  var storedDrinks = JSON.parse(localStorage.getItem("drink-recipe"));
 
-//need local history 
+  // if drinks were retrieved from storage, update the drinks to the array
+  if (storedDrinks !== null) {
+    drinkSearchHistory = storedDrinks;
+  }
+}
+
+function storedDrinks() {
+  //stringify and set key in local storage array
+  localStorage.setItem("drink-recipe", JSON.stringify(drinkSearchHistory));
+}
 
 drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);
+
+init()

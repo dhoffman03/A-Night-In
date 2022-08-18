@@ -172,6 +172,10 @@ input {
     color: var(--burnt-light);
 }
 
+.drink-ext-link:hover {
+    color: var(--amber);
+}
+
 /* movie appended results */
 #movie-results-print {
     display: flex;
