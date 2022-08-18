@@ -127,16 +127,18 @@ var drinkSearchInputEl = document.querySelector("#drink-search-input");
 var drinkStyleSearchEl = document.querySelector("#drink-search");
 var userDrinkInput = "Whiskey";
 var userDrinkStyleInput = "alcohol-cocktail";
+
 var querydrinkAPI =
   "https://api.edamam.com/api/recipes/v2?type=public&q=" +
   userDrinkInput +
   "&app_id=f77c6a8d&app_key=5618241aea289752355d852d3165a903&health=" +
-  userDrinkStyleInput +
-  "&imageSize=REGULAR";
+  userDrinkStyleInput;
 
-// var drinkDisplayDiv = $("#drink-ingredients")
-  //a place to store the saved drinks(a fridge @_@;)
+  var displayToSidebar = document.querySelector("#historySidebar")
+  var saveDrink = document.querySelector("#save-btn");
   var drinkSearchHistory = [];
+  var drinkLinkSearchHistory = [];
+  var drinkSavedHistory = "";
 
 //for tracking the data during the build
 fetch(querydrinkAPI).then(function (response) {
@@ -189,6 +191,7 @@ var drinkFormSubmitHandler = function (event) {
           let drinkPic = "<img class='drink-pic rounded-lg' src=" + drinkImage + " alt='Drink image'>"
           let ingreText = "<ul>"
           let source = "<a class='drink-ext-link' href=" + drinkLink + ">Click here for complete directions.</a>"
+          let save = "<button class='save-recipe rounded-md p-2 mt-2' id='save-btn' onclick='createNav()'>Save Recipe</button"
           for(let i = 0; i <ingeLinesLength; i++) {
             ingreText += "<li>" + ingredientsList[i] + "</li<br>";
           }
@@ -199,15 +202,22 @@ var drinkFormSubmitHandler = function (event) {
           document.getElementById("drink-image").innerHTML = drinkPic;
           drinkSource.text("Recipe from " + recipeSource + ".");
           document.getElementById("drink-link").innerHTML = source;
+          document.getElementById("drink-save").innerHTML = save;
 
           //set to localStorage
-
-          localStorage.setItem("drink-recipe", recipeName);
+          localStorage.setItem("drink recipe", recipeName);
+          localStorage.setItem("drink link", drinkLink);
           //add new drink to the drink array
           drinkSearchHistory.push(recipeName);
+          drinkLinkSearchHistory.push(drinkLink);
 
           //store updates 
           storedDrinks();
+          storedLinks();
+          console.log(drinkSearchHistory);
+          console.log(drinkLinkSearchHistory);
+          console.log(localStorage.getItem("drink link"));
+          // document.getElementById("historySidebar").innerHTML = "<a href='#'>" + drinkSearchHistory + "</a>"
 
         });
       }
@@ -215,19 +225,87 @@ var drinkFormSubmitHandler = function (event) {
   }
 };
 
+function createNav () {
+  //get the drink name from storage on click
+  for(let i = 0; i < drinkSearchHistory.length; i++) {
+    console.log(drinkSearchHistory[i]);
+
+  //get the drink url from storage on click
+  for(let e = 0; e < drinkLinkSearchHistory.length; e++) {
+    console.log(drinkLinkSearchHistory[e]);
+    //display the saved recipe in the sidebar and make it clickable
+    document.getElementById("savedDrinks").innerHTML = "<a id='savedDrink' href=" + drinkLinkSearchHistory[e] + ">" + drinkSearchHistory[i] + "</a>";
+
+    //append to the saved sidebar
+    document.getElementById("savedDrinks").appendChild("<a id='savedDrink' href=" + drinkLinkSearchHistory[e] + ">" + drinkSearchHistory[i] + "</a>");
+
+    var bookedDrink = document.getElementById("savedDrink");
+    console.log(bookedDrink);
+
+    // var container = document.getElementById("savedDrinks");
+    // container.appendChild(bookedDrink);
+      //set to localStorage
+      localStorage.setItem("saved drink", bookedDrink);
+      //add new drink to the drink array
+      drinkSavedHistory.push(bookedDrink);
+      //store updates
+      savedDrinkLinks();
+  }
+  } 
+}
+// var saveDrink = document.querySelector("#save-btn");
+
+// drinkSaveHandler = function(event) {
+//   for (var i = 0; i < drinkSearchHistory.length; i++) {
+//     var drink = drinkSearchHistory[0];
+//     var savedURL = drinkLinkSearchHistory[0];
+//     var savedDrink = document.createElement("a");
+//     savedDrink.innerHTML = drink;
+//     savedDrink.href = savedURL;
+//     savedDrink.className = "savedDrink";
+//     savedDrink.id = "savedDrink";
+    
+
+//       //where the history goes in the html
+//       var container = document.getElementById("displaySavedRecipes");
+//       container.appendChild(savedDrink);
+
+//       // var
+
+// }
+// }
+
 function init() {
   //get stored drinks from localStorage
-  var storedDrinks = JSON.parse(localStorage.getItem("drink-recipe"));
+  var storedDrinks = JSON.parse(localStorage.getItem("drink recipe"));
+  var storedLinks = JSON.parse(localStorage.getItem("drink link"));
+  var savedDrinkLinks = JSON.parse(localStorage.getItem("saved drinks"));
 
   // if drinks were retrieved from storage, update the drinks to the array
   if (storedDrinks !== null) {
     drinkSearchHistory = storedDrinks;
   }
+  if (storedLinks !== null) {
+    drinkLinkSearchHistory = storedLinks;
+    
+  }
+  if (savedDrinkLinks !== null) {
+    drinkSavedHistory = savedDrinkLinks;
+    
+  }
 }
 
 function storedDrinks() {
   //stringify and set key in local storage array
-  localStorage.setItem("drink-recipe", JSON.stringify(drinkSearchHistory));
+  localStorage.setItem("drink recipe", JSON.stringify(drinkSearchHistory));
+}
+
+function storedLinks() {
+  localStorage.setItem("drink link", JSON.stringify(drinkLinkSearchHistory));
+}
+
+function savedDrinkLinks() {
+  localStorage.setItem("saved drink", JSON.stringify(drinkSavedHistory));
 }
 
 drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);

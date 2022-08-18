@@ -25,7 +25,7 @@
     <div id="historySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
       <a href="#">Food</a>
-      <a href="#">Drinks</a>
+      <div id="savedDrinks"></div>
       <a href="#">Movies</a>
     </div>
 
@@ -135,11 +135,12 @@
       <div id="drinks" class="tabcontent">
         <div class="ml-5 mt-5">
         <div id="drink-image"></div>
-        <h2 class="mt-3" id="drink-title"></h2>
+        <h2 class="mt-3 mb-3 text-xl" id="drink-title"></h2>
         <div id="drink-ingredients"></div>
         <br>
         <div id="drink-source"></div>
         <div id="drink-link"></div>
+        <div id="drink-save"></div>
         <br>
         </div>
         <br>
@@ -194,6 +195,7 @@
       document.getElementById("historySidebar").style.width = "0";
       document.getElementById("main").style.marginLeft = "0";
     }
+    var saveDrink = document.querySelector("#save-btn");
   </script>
 </body>
 
