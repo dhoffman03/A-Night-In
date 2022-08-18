@@ -9,10 +9,12 @@ var movieContentEl = document.querySelector("#movie-results-print")
 var requestURL =
   "https://imdb-api.com/API/AdvancedSearch/k_qc3umdyg/?genres=action";
 
+// var searchURL =  "https://imdb-api.com/API/AdvancedSearch/" + movieAPIKey + "/genres=" + genreInput;
+
 function getInput() {
   $("#movie-search").each(function () {
-    var input = $(this).text();
-    console.log(input)
+    var input = $(this).children().val();
+    console.log(this)
 
     if (getInput === "Select a Genre") {
       console.log("select a genre")
@@ -21,12 +23,12 @@ function getInput() {
 }
 getInput();
 
+//append movie cards on screen
 function displayMovie(movieResults) {
-  console.log(movieResults);
+  // console.log(movieResults);
 
   var resultCard = document.createElement("div");
   resultCard.classList.add("movie-card", "background-dark", "text-light"); 
-  // "search-form", "p-7", "m-5", "rounded-lg", "custom-form");
 
   var resultBody = document.createElement("div");
   resultBody.classList.add("movie-card-body");
@@ -35,7 +37,7 @@ function displayMovie(movieResults) {
   var movieImage = document.createElement ("img");
   movieImage.src = movieResults.image;
   movieImage.classList.add("movie-image");
-  console.log(movieImage)
+  // console.log(movieImage)
 
   var movieTitle = document.createElement("h1");
   movieTitle.textContent = movieResults.title;
@@ -76,7 +78,7 @@ function displayMovie(movieResults) {
   movieContentEl.append(resultCard)
 }
 
-
+//fetching URL
 fetch(requestURL, {
   method: "Get",
   credential: "same-origin",
@@ -86,11 +88,14 @@ fetch(requestURL, {
     return response.json();
   })
   .then(function (data) {
-    console.log(data);
+    // console.log(data);
 
-    for (var i = 0; i < data.results.length; i++) {
-      console.log(data.results[i]);
-      displayMovie(data.results[i]);
+    //looping through results to get all the movie data in the genre
+    // for (var i = 0; i < data.results.length; i++) {
+    //   // console.log(data.results[i]);
+    //   displayMovie(data.results[i]);
+
+    displayMovie(data.results[0])
 
       // var movieTitle = data.results[0].title;
       // console.log(movieTitle)
@@ -103,7 +108,7 @@ fetch(requestURL, {
       // var movieGenres = data.results[0].genres;
       // console.log(movieGenres)
 
-    };
+    // };
   });
 
 //Reed script sandbox
