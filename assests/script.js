@@ -17,10 +17,12 @@ var movieContentEl = document.querySelector("#movie-results-print")
 var requestURL =
   "https://imdb-api.com/API/AdvancedSearch/k_qc3umdyg/?genres=action";
 
+// var searchURL =  "https://imdb-api.com/API/AdvancedSearch/" + movieAPIKey + "/genres=" + genreInput;
+
 function getInput() {
   $("#movie-search").each(function () {
-    var input = $(this).text();
-    console.log(input)
+    var input = $(this).children().val();
+    console.log(this)
 
     if (getInput === "Select a Genre") {
       console.log("select a genre")
@@ -29,12 +31,12 @@ function getInput() {
 }
 getInput();
 
+//append movie cards on screen
 function displayMovie(movieResults) {
-  console.log(movieResults);
+  // console.log(movieResults);
 
   var resultCard = document.createElement("div");
   resultCard.classList.add("movie-card", "background-dark", "text-light"); 
-  // "search-form", "p-7", "m-5", "rounded-lg", "custom-form");
 
   var resultBody = document.createElement("div");
   resultBody.classList.add("movie-card-body");
@@ -43,7 +45,7 @@ function displayMovie(movieResults) {
   var movieImage = document.createElement ("img");
   movieImage.src = movieResults.image;
   movieImage.classList.add("movie-image");
-  console.log(movieImage)
+  // console.log(movieImage)
 
   var movieTitle = document.createElement("h1");
   movieTitle.textContent = movieResults.title;
@@ -84,7 +86,7 @@ function displayMovie(movieResults) {
   movieContentEl.append(resultCard)
 }
 
-
+//fetching URL
 fetch(requestURL, {
   method: "Get",
   credential: "same-origin",
@@ -94,11 +96,14 @@ fetch(requestURL, {
     return response.json();
   })
   .then(function (data) {
-    console.log(data);
+    // console.log(data);
 
-    for (var i = 0; i < data.results.length; i++) {
-      console.log(data.results[i]);
-      displayMovie(data.results[i]);
+    //looping through results to get all the movie data in the genre
+    // for (var i = 0; i < data.results.length; i++) {
+    //   // console.log(data.results[i]);
+    //   displayMovie(data.results[i]);
+
+    displayMovie(data.results[0])
 
       // var movieTitle = data.results[0].title;
       // console.log(movieTitle)
@@ -111,7 +116,7 @@ fetch(requestURL, {
       // var movieGenres = data.results[0].genres;
       // console.log(movieGenres)
 
-    };
+    // };
   });
 
 //Reed script sandbox
@@ -194,11 +199,19 @@ var drinkFormSubmitHandler = function (event) {
           document.getElementById("drink-image").innerHTML = drinkPic;
           drinkSource.text("Recipe from " + recipeSource + ".");
           document.getElementById("drink-link").innerHTML = source;
+<<<<<<< HEAD
 
           localStorage.setItem("drink-recipe", recipeName);
           //add new drink to the drink array
           drinkSearchHistory.push(recipeName);
 
+=======
+
+          localStorage.setItem("drink-recipe", recipeName);
+          //add new drink to the drink array
+          drinkSearchHistory.push(recipeName);
+
+>>>>>>> 04d8b8341062d5a76b37929fdb2cd71e556c2f5d
           //store updates 
           storedDrinks();
 
@@ -211,6 +224,7 @@ var drinkFormSubmitHandler = function (event) {
 function init() {
   //get stored drinks from localStorage
   var storedDrinks = JSON.parse(localStorage.getItem("drink-recipe"));
+<<<<<<< HEAD
 
   // if drinks were retrieved from storage, update the drinks to the array
   if (storedDrinks !== null) {
@@ -218,6 +232,15 @@ function init() {
   }
 }
 
+=======
+
+  // if drinks were retrieved from storage, update the drinks to the array
+  if (storedDrinks !== null) {
+    drinkSearchHistory = storedDrinks;
+  }
+}
+
+>>>>>>> 04d8b8341062d5a76b37929fdb2cd71e556c2f5d
 function storedDrinks() {
   //stringify and set key in local storage array
   localStorage.setItem("drink-recipe", JSON.stringify(drinkSearchHistory));
