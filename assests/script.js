@@ -121,7 +121,7 @@ var querydrinkAPI =
   userDrinkStyleInput +
   "&imageSize=REGULAR";
 
-var drinkDisplayDiv = $("#drink-recipe-print")
+// var drinkDisplayDiv = $("#drink-ingredients")
   //a place to store the saved drinks(a fridge @_@;)
   var drinkSearchHistory = [];
 
@@ -154,33 +154,36 @@ var drinkFormSubmitHandler = function (event) {
       if (response.ok) {
         response.json().then(function (data) {
           //check how the process is going
-          console.log(data.hits[0].recipe.ingredientLines);
+          console.log(data.hits[0].recipe.uri);
           console.log(userDrinkInput);
           console.log(userDrinkStyleInput);
           //here are the objetcts we need for the site
           var recipeName = data.hits[0].recipe.label;
           //ing. list,images and steps will need functions to get at all the objects within
           var ingredientsList = data.hits[0].recipe.ingredientLines;
-          var recipeSteps = data.hits[0].recipe.ingredients;
           var recipeSource = data.hits[0].recipe.source;
-          var recipeImage = data.hits[0].recipe.images;
-            // var recipeLink = $(data.hits[0].recipe.url); this line isn't working for some reason..
-          var drinkPrint = $("#drink-recipe-print");
+          var drinkImage = data.hits[0].recipe.images;
+          var drinkLink = data.hits[0].recipe.uri;
+          var drinkSource = $("#drink-source");
+          var drinkIngredients = $("#drink-ingredients");
           console.log(recipeName);
+
           //display the recipe
           $("#drink-title").text(recipeName);
-          // drinkPrint.text(ingredientsList);
-          // drinkPrint.text(recipeSteps);
-          // drinkPrint.text(recipeSource);
+          drinkSource.text("Recipe from " + recipeSource + ".");
+
+          //ingredient list
           let ingeLinesLength = ingredientsList.length;
-          let text = "<ul>"
+          let ingreText = "<ul>"
+          let source = "<a href=" + drinkLink + ">Click here for complete directions.</a>"
           for(let i = 0; i <ingeLinesLength; i++) {
-            text += "<li>" + ingredientsList[i] + "</li<br>";
+            ingreText += "<li>" + ingredientsList[i] + "</li<br>";
           }
-          text += "</ul>";
-
-          document.getElementById("drink-recipe-print").innerHTML = text;
-
+          ingreText += "</ul>";
+          //display list
+          document.getElementById("#drink-source").innerHTML = ingreText;
+          //a line for the source link
+          document.getElementById("#drink-ingredients").innerHTML = source;
         });
       }
     });
