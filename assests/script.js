@@ -138,13 +138,13 @@ var drinkLinkSearchHistory = [];
 var drinkSavedHistory = [];
 
 //for tracking the data during the build
-fetch(querydrinkAPI).then(function (response) {
-  if (response.ok) {
-    response.json().then(function (data) {
-      console.log(data);
-    });
-  }
-});
+// fetch(querydrinkAPI).then(function (response) {
+//   if (response.ok) {
+//     response.json().then(function (data) {
+//       console.log(data);
+//     });
+//   }
+// });
 
 // for handling submission of the drink form
 var drinkFormSubmitHandler = function (event) {
@@ -229,6 +229,7 @@ var drinkFormSubmitHandler = function (event) {
 };
 
 function createNav() {
+
   //get the drink name from storage on click
   for (let i = 0; i < drinkSearchHistory.length; i++) {
     console.log(drinkSearchHistory[i]);
@@ -237,32 +238,39 @@ function createNav() {
     for (let e = 0; e < drinkLinkSearchHistory.length; e++) {
       console.log(drinkLinkSearchHistory[e]);
       //display the saved recipe in the sidebar and make it clickable
-      document.getElementById("savedDrinks").innerHTML =
-        "<a id='savedDrink' href=" +
-        drinkLinkSearchHistory[e] +
-        ">" +
-        drinkSearchHistory[i] +
-        "</a>";
+      // document.getElementById("savedDrinks").innerHTML =
+      //   "<a id='savedDrink' href=" +
+      //   drinkLinkSearchHistory[e] +
+      //   ">" +
+      //   drinkSearchHistory[i] +
+      //   "</a>";
 
-      //append to the saved sidebar
-      // document.getElementById("savedDrinks").appendChild("<a id='savedDrink' href=" + drinkLinkSearchHistory[e] + ">" + drinkSearchHistory[i] + "</a>");
+        var drink = drinkSearchHistory[i];
+        var bookedDrink = document.createElement("a");
+        bookedDrink.innerHTML = drink;
+        bookedDrink.href = drinkLinkSearchHistory[e];
+        bookedDrink.id = "savedDrink";
 
-      var bookedDrink = (document.getElementById("savedDrinks").innerHTML =
-        "<a id='savedDrink' href=" +
-        drinkLinkSearchHistory[e] +
-        ">" +
-        drinkSearchHistory[i] +
-        "</a>");
 
-      // var container = document.getElementById("savedDrinks");
-      // container.appendChild(bookedDrink);
+      // var bookedDrink = document.getElementById("savedDrinks").innerHTML =
+      //   "<a id='savedDrink' href=" +
+      //   drinkLinkSearchHistory[e] +
+      //   ">" +
+      //   drinkSearchHistory[i] +
+      //   "</a>";
+
+      var container = document.getElementById("savedDrinks");
+      container.innerHTML = "";
+      
       //set to localStorage
       localStorage.setItem("saved drink", bookedDrink);
       //add new drink to the drink array
       drinkSavedHistory.push(bookedDrink);
+      container.appendChild(drinkSavedHistory[i]);
       //store updates
-      savedDrinkLinks();
+      // savedDrinkLinks();
       console.log(drinkSavedHistory);
+      
     }
   }
 }
