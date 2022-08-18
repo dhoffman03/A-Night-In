@@ -63,27 +63,30 @@ $("#food-btn").on("click", function(e) {
 }) 
 
 
-
 //Gia script sandbox
 var movieAPIKey = "k_4qje020e";
 var movieContentEl = document.querySelector("#movie-results-print");
+var movieForm = document.getElementById("movie-form")
+var genreInput = document.getElementById("movie-search")
 
-var requestURL =
+var testURL =
   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
 
-// var searchURL =  "https://imdb-api.com/API/AdvancedSearch/" + movieAPIKey + "/genres=" + genreInput;
+//test
+fetch(testURL, {
+  method: "Get",
+  credential: "same-origin",
+  redirect: "follow",
+})
+  .then(function (response) {
+    return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
 
-function getInput() {
-  $("#movie-search").each(function () {
-    var input = $(this).children().val();
-    console.log(this);
-
-    if (getInput === "Select a Genre") {
-      console.log("select a genre");
-    }
-  });
-}
-getInput();
+    //looping through results to get all the movie data in the genre
+    for (var i = 0; i < data.results.length; i++) {
+      console.log(data.results[i]);
 
 //append movie cards on screen
 function displayMovie(movieResults) {
@@ -134,24 +137,33 @@ function displayMovie(movieResults) {
   movieContentEl.append(resultCard);
 }
 
-//fetching URL
-fetch(requestURL, {
-  method: "Get",
-  credential: "same-origin",
-  redirect: "follow",
-})
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(data);
+//search IMDB API
+function searchMovieAPI(genreInputVal) {
+  var partialURL = "https://imdb-api.com/API/AdvancedSearch/"
 
-    //looping through results to get all the movie data in the genre
-    // for (var i = 0; i < data.results.length; i++) {
-    //   // console.log(data.results[i]);
-    //   displayMovie(data.results[i]);
+  if(genreInput) {
+    newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal
+  }
 
-    displayMovie(data.results[0]);
+  fetch(newMovieURL)
+    .then(function(response) {
+      if (response.ok) {
+        return response.json()
+      }
+    })
+    .then(function(data) {
+      console.log(data);
+
+      for (var i = 0; i < data.results.length; i++ ) {
+        console.log(data.results[i]);
+        displayMovie(data.results[i])
+      }
+    })
+}
+
+//     //   displayMovie(data.results[i]);
+
+//     displayMovie(data.results[0]);
 
     // var movieTitle = data.results[0].title;
     // console.log(movieTitle)
@@ -164,8 +176,18 @@ fetch(requestURL, {
     // var movieGenres = data.results[0].genres;
     // console.log(movieGenres)
 
-    // };
-  });
+  //   };
+  // });
+
+function handleMovieSearchSubmit(event) {
+  event.preventDefault();
+
+  var genreInputVal = document.getElementById("movie-search").value
+
+  searchMovieAPI(genreInputVal)
+}
+
+movieForm.addEventListener("submit", handleMovieSearchSubmit)
 
 //Reed script sandbox
 var drinkAPIKey = "5618241aea289752355d852d3165a903";
@@ -372,4 +394,4 @@ function savedDrinkLinks() {
 
 drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);
 
-init();
+init()
