@@ -65,11 +65,11 @@ $("#food-btn").on("click", function(e) {
 
 
 //Gia script sandbox
-var movieAPIKey = "k_qc3umdyg";
+var movieAPIKey = "k_4qje020e";
 var movieContentEl = document.querySelector("#movie-results-print");
 
 var requestURL =
-  "https://imdb-api.com/API/AdvancedSearch/k_qc3umdyg/?genres=action";
+  "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
 
 // var searchURL =  "https://imdb-api.com/API/AdvancedSearch/" + movieAPIKey + "/genres=" + genreInput;
 
@@ -257,14 +257,6 @@ var drinkFormSubmitHandler = function (event) {
           document.getElementById("drink-image").innerHTML = drinkPic;
           drinkSource.text("Recipe from " + recipeSource + ".");
           document.getElementById("drink-link").innerHTML = source;
-<<<<<<< HEAD
-
-          localStorage.setItem("drink-recipe", recipeName);
-          //add new drink to the drink array
-          drinkSearchHistory.push(recipeName);
-
-          //store updates 
-=======
           document.getElementById("drink-save").innerHTML = save;
 
           //set to localStorage
@@ -275,7 +267,6 @@ var drinkFormSubmitHandler = function (event) {
           drinkLinkSearchHistory.push(drinkLink);
 
           //store updates
->>>>>>> f0db4d86b1bbfbf567bdb3595310f6f4b3e5e20c
           storedDrinks();
           storedLinks();
           console.log(drinkSearchHistory);
@@ -288,11 +279,6 @@ var drinkFormSubmitHandler = function (event) {
   }
 };
 
-<<<<<<< HEAD
-function init() {
-  //get stored drinks from localStorage
-  var storedDrinks = JSON.parse(localStorage.getItem("drink-recipe"));
-=======
 function createNav() {
   //get the drink name from storage on click
   for (let i = 0; i < drinkSearchHistory.length; i++) {
@@ -357,7 +343,6 @@ function init() {
   var storedDrinks = JSON.parse(localStorage.getItem("drink recipe"));
   var storedLinks = JSON.parse(localStorage.getItem("drink link"));
   var savedDrinkLinks = JSON.parse(localStorage.getItem("saved drinks"));
->>>>>>> f0db4d86b1bbfbf567bdb3595310f6f4b3e5e20c
 
   // if drinks were retrieved from storage, update the drinks to the array
   if (storedDrinks !== null) {
