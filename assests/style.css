@@ -23,6 +23,22 @@ body {
     color: var(--cream);
 }
 
+/* Set font for title */
+h1 {
+    font-family: 'Oranienbaum', serif;
+}
+
+/* Set background color for header and footer */
+header, footer{
+    background-color: var(--dark);
+}
+
+/* Set colors for input box */
+input {
+    background-color: #e8deda;
+    color: var(--brunt);
+}
+
 /* CSS for the sidepanel */
 /* The sidebar menu */
 .sidebar {
@@ -87,16 +103,6 @@ body {
 @media screen and (max-height: 450px) {
   .sidebar {padding-top: 15px;}
   .sidebar a {font-size: 18px;}
-}
-
-/* Set font for title */
-h1 {
-    font-family: 'Oranienbaum', serif;
-}
-
-/* Set background color for header and footer */
-header, footer{
-    background-color: var(--dark);
 }
 
 /* the tabs for navigating recipes - styling*/

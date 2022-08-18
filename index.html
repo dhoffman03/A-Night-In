@@ -48,13 +48,20 @@
     <div class="foodCard">
       <form class="search-form p-7 m-5 rounded-lg custom-form" id="food-form">
         <h1 class="text-2xl">Pick Your Meal</h1>
-        <p>Choose the type of meal you're feeling tonight</p>
+        <p>Choose the type of cuisine you're feeling tonight</p>
+        <br />
+        <input type="text" class="rounded-md p-2" id="food-search-input" placeholder="Steak" />
+        <label for="food-search-input">Pick ingredient</label>
+        <br />
         <br />
         <select class="format-input rounded-md custom-input p-2" id="food-search">
-          <option value="" disabled selected>Select a Meal Type</option>
-          <option value="dinner">Dinner</option>
-          <option value="snack">Snack</option>
-          <option value="dessert">Dessert</option>
+          <option value="" disabled selected>Select a Cuisine Type</option>
+          <option value="american">American</option>
+          <option value="asian">Asian</option>
+          <option value="caribbean">Caribbean</option>
+          <option value="italian">Italian</option>
+          <option value="mexican">Mexican</option>
+          <option value="world">World</option>
         </select>
         <button id="food-btn" class="btn p-2 rounded-lg ml-2 custom-btn">
           Search

@@ -1,6 +1,14 @@
 // //for the tabs /RM
 
 //Dymond script sandbox
+var foodApiKey = "&app_key=d20058a43c19a20e533d6b06c2c26156";
+var foodAppId = "&app_id=9fc7bc31"
+var userFoodInput = $("#food-search-input")
+var userFoodType = $("#food-search")
+
+var foodURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" +  + foodAppId + foodApiKey + "&cuisineType=" + + "&mealType=Dinner&imageSize=REGULAR&random=true&field=image&field=url&field=ingredients";
+
+
 
 //Gia script sandbox
 var movieAPIKey = "k_qc3umdyg";
