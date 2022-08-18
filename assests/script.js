@@ -3,11 +3,51 @@
 //Dymond script sandbox
 var foodApiKey = "&app_key=d20058a43c19a20e533d6b06c2c26156";
 var foodAppId = "&app_id=9fc7bc31"
-var userFoodInput = $("#food-search-input")
-var userFoodType = $("#food-search")
+var foodInputEl= $("#food-search-input")
+var foodTypeEl = $("#food-search")
 
-var foodURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" +  + foodAppId + foodApiKey + "&cuisineType=" + + "&mealType=Dinner&imageSize=REGULAR&random=true&field=image&field=url&field=ingredients";
+///for testing in console
+var userFoodInput = "Steak";
+var userFoodType = "asian";
+var foodURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" + userFoodInput + foodAppId + foodApiKey + "&cuisineType=" + userFoodType + "&mealType=Dinner&random=true"; 
 
+fetch(foodURL).then(function (response) {
+  if (response.ok) {
+    response.json().then(function (data) {
+      console.log(data)
+    })
+  }
+})
+///
+
+//Handle food form submission
+function getFoodApi() {
+
+  var userFoodInput = foodInputEl.value;
+  var userFoodType = foodTypeEl.value;
+
+  var foodURL = "https://api.edamam.com/api/recipes/v2?type=public&q=" + userFoodInput + foodAppId + foodApiKey + "&cuisineType=" + userFoodType + "&mealType=Dinner&random=true"; 
+
+  //when user inputs are true --> request api URL --> run recipe function
+  if (userFoodInput && userFoodType) {
+    fetch(foodURL).then(function (response) {
+      if(response.ok) {
+        response.json().then(function (data) {
+          //run recipe function
+          getFoodRecipe(data);
+        })
+      }
+    })
+  }
+}
+
+//Grab data and print to results
+function getFoodRecipe(data) {
+  //var for label,ingredients, url, imagesSmall --> var ingredients = data.hits[i]recipe.ingredientLines
+  //display lable, ingredients, url, img to HTML food tab
+}
+
+$("#food-btn").on("click", getFoodApi())
 
 
 //Gia script sandbox
