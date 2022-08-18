@@ -96,7 +96,7 @@ fetch(requestURL, {
     return response.json();
   })
   .then(function (data) {
-    // console.log(data);
+    console.log(data);
 
     //looping through results to get all the movie data in the genre
     // for (var i = 0; i < data.results.length; i++) {
@@ -199,19 +199,11 @@ var drinkFormSubmitHandler = function (event) {
           document.getElementById("drink-image").innerHTML = drinkPic;
           drinkSource.text("Recipe from " + recipeSource + ".");
           document.getElementById("drink-link").innerHTML = source;
-<<<<<<< HEAD
 
           localStorage.setItem("drink-recipe", recipeName);
           //add new drink to the drink array
           drinkSearchHistory.push(recipeName);
 
-=======
-
-          localStorage.setItem("drink-recipe", recipeName);
-          //add new drink to the drink array
-          drinkSearchHistory.push(recipeName);
-
->>>>>>> 04d8b8341062d5a76b37929fdb2cd71e556c2f5d
           //store updates 
           storedDrinks();
 
@@ -224,7 +216,6 @@ var drinkFormSubmitHandler = function (event) {
 function init() {
   //get stored drinks from localStorage
   var storedDrinks = JSON.parse(localStorage.getItem("drink-recipe"));
-<<<<<<< HEAD
 
   // if drinks were retrieved from storage, update the drinks to the array
   if (storedDrinks !== null) {
@@ -232,15 +223,6 @@ function init() {
   }
 }
 
-=======
-
-  // if drinks were retrieved from storage, update the drinks to the array
-  if (storedDrinks !== null) {
-    drinkSearchHistory = storedDrinks;
-  }
-}
-
->>>>>>> 04d8b8341062d5a76b37929fdb2cd71e556c2f5d
 function storedDrinks() {
   //stringify and set key in local storage array
   localStorage.setItem("drink-recipe", JSON.stringify(drinkSearchHistory));
