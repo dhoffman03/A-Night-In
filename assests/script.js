@@ -3,15 +3,66 @@
 //Dymond script sandbox
 var foodApiKey = "&app_key=d20058a43c19a20e533d6b06c2c26156";
 var foodAppId = "&app_id=9fc7bc31";
-var userFoodInput = $("#food-search-input");
-var userFoodType = $("#food-search");
+var foodInputEl= $("#food-search-input")
+var foodTypeEl = $("#food-search")
 
+//For testing
+var userFoodInput = "Steak";
+var userFoodType = "asian";
 var foodURL =
-  "https://api.edamam.com/api/recipes/v2?type=public&q=" +
+  "https://api.edamam.com/api/recipes/v2?type=public&q=" + userFoodInput
   +foodAppId +
   foodApiKey +
+  "&cuisineType=" + userFoodType
+  +"&mealType=Dinner&random=true";
+
+fetch(foodURL).then(function (response) {
+  if (response.ok) {
+    response.json().then(function (data) {
+      console.log(data)
+    })
+  }
+})
+
+//Handle food form submission
+function getFoodApi() {
+
+  var userFoodInput = foodInputEl.value;
+  var userFoodType = foodTypeEl.value;
+
+  var foodURL =
+  "https://api.edamam.com/api/recipes/v2?type=public&q=" + userFoodInput
+  +foodAppId + userFoodType
+  foodApiKey +
   "&cuisineType=" +
-  +"&mealType=Dinner&imageSize=REGULAR&random=true&field=image&field=url&field=ingredients";
+  +"&mealType=Dinner&random=true";
+
+   //when user inputs are true --> request api URL --> run recipe function
+   if (userFoodInput && userFoodType) {
+    fetch(foodURL).then(function (response) {
+      if(response.ok) {
+        response.json().then(function (data) {
+          //run recipe function
+          getFoodRecipe(data);
+        })
+      }
+    })
+  }
+}
+
+function getFoodRecipe(data) {
+  //var for label, imgSmall, url, ingredientLines
+  //display to html food tab
+}
+
+$("#food-btn").on("click", function(e) {
+  e.preventDefault();
+
+  getFoodApi();
+
+}) 
+
+
 
 //Gia script sandbox
 var movieAPIKey = "k_qc3umdyg";
