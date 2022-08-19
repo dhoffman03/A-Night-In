@@ -73,20 +73,22 @@ var testURL =
   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
 
 //test
-fetch(testURL, {
-  method: "Get",
-  credential: "same-origin",
-  redirect: "follow",
-})
-  .then(function (response) {
-    return response.json();
-  })
-  .then(function (data) {
-    console.log(data);
+// fetch(testURL, {
+//   method: "Get",
+//   credential: "same-origin",
+//   redirect: "follow",
+// })
+//   .then(function (response) {
+//     return response.json();
+//   })
+//   .then(function (data) {
+//     console.log(data);
 
-    //looping through results to get all the movie data in the genre
-    for (var i = 0; i < data.results.length; i++) {
-      console.log(data.results[i]);
+//     //looping through results to get all the movie data in the genre
+//     for (var i = 0; i < data.results.length; i++) {
+//       console.log(data.results[i])
+//     };
+  
 
 //append movie cards on screen
 function displayMovie(movieResults) {
@@ -378,7 +380,7 @@ function init() {
   if (savedDrinkLinks !== null) {
     drinkSavedHistory = savedDrinkLinks;
   }
-  createNav();
+  // createNav();
 }
 
 function storedDrinks() {
