@@ -77,8 +77,8 @@ var movieForm = document.getElementById("movie-form")
 var genreInput = document.getElementById("movie-search")
 
 
-var testURL =
-  "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
+// var testURL =
+//   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
 
 //append movie cards on screen
 function displayMovie(movieResults) {
@@ -138,6 +138,7 @@ function searchMovieAPI(genreInputVal) {
     newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal
   }
 
+  //fetching new url each time a genre input is entered
   fetch(newMovieURL)
     .then(function(response) {
       if (response.ok) {
@@ -147,6 +148,7 @@ function searchMovieAPI(genreInputVal) {
     .then(function(data) {
       console.log(data);
 
+      //looping through to pull all movie data I need
       for (var i = 0; i < data.results.length; i++ ) {
         console.log(data.results[i]);
         displayMovie(data.results[i])
