@@ -283,5 +283,6 @@ function createNav() {
     // }
   }
 }
+}
 
-drinkFormEl.addEventListener("submit", drinkFormSubmitHandler)
+drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);
