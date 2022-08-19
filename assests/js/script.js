@@ -3,51 +3,56 @@
 //Dymond script sandbox
 var foodApiKey = "&app_key=d20058a43c19a20e533d6b06c2c26156";
 var foodAppId = "&app_id=9fc7bc31";
-var foodInputEl = $("#food-search-input");
-var foodTypeEl = $("#food-search");
+
+var foodInputEl= $("#food-search-input")
+var foodTypeEl = $("#food-search")
+
 
 //For testing
 var userFoodInput = "Steak";
 var userFoodType = "asian";
 var foodURL =
-  "https://api.edamam.com/api/recipes/v2?type=public&q=" +
-  userFoodInput +
-  foodAppId +
+
+  "https://api.edamam.com/api/recipes/v2?type=public&q=" + userFoodInput
+  +foodAppId +
   foodApiKey +
-  "&cuisineType=" +
-  userFoodType +
-  "&mealType=Dinner&random=true";
+  "&cuisineType=" + userFoodType
+  +"&mealType=Dinner&random=true";
+
 
 fetch(foodURL).then(function (response) {
   if (response.ok) {
     response.json().then(function (data) {
-      console.log(data);
-    });
+
+      console.log(data)
+    })
   }
-});
+})
 
 //Handle food form submission
 function getFoodApi() {
+
   var userFoodInput = foodInputEl.value;
   var userFoodType = foodTypeEl.value;
 
   var foodURL =
-    "https://api.edamam.com/api/recipes/v2?type=public&q=" +
-    userFoodInput +
-    foodAppId +
-    userFoodType;
-  foodApiKey + "&cuisineType=" + +"&mealType=Dinner&random=true";
 
-  //when user inputs are true --> request api URL --> run recipe function
-  if (userFoodInput && userFoodType) {
+  "https://api.edamam.com/api/recipes/v2?type=public&q=" + userFoodInput
+  +foodAppId + userFoodType
+  foodApiKey +
+  "&cuisineType=" +
+  +"&mealType=Dinner&random=true";
+
+   //when user inputs are true --> request api URL --> run recipe function
+   if (userFoodInput && userFoodType) {
     fetch(foodURL).then(function (response) {
-      if (response.ok) {
+      if(response.ok) {
         response.json().then(function (data) {
           //run recipe function
           getFoodRecipe(data);
-        });
+        })
       }
-    });
+    })
   }
 }
 
@@ -56,17 +61,21 @@ function getFoodRecipe(data) {
   //display to html food tab
 }
 
-$("#food-btn").on("click", function (e) {
+
+$("#food-btn").on("click", function(e) {
   e.preventDefault();
 
   getFoodApi();
-});
+
+}) 
+
 
 //Gia script sandbox
 var movieAPIKey = "k_4qje020e";
 var movieContentEl = document.querySelector("#movie-results-print");
-var movieForm = document.getElementById("movie-form");
-var genreInput = document.getElementById("movie-search");
+var movieForm = document.getElementById("movie-form")
+var genreInput = document.getElementById("movie-search")
+
 
 var testURL =
   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
@@ -122,57 +131,40 @@ function displayMovie(movieResults) {
 
 //search IMDB API
 function searchMovieAPI(genreInputVal) {
-  var partialURL = "https://imdb-api.com/API/AdvancedSearch/";
 
-  if (genreInput) {
-    newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal;
+  var partialURL = "https://imdb-api.com/API/AdvancedSearch/"
+
+  if(genreInput) {
+    newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal
   }
 
   fetch(newMovieURL)
-    .then(function (response) {
+    .then(function(response) {
       if (response.ok) {
-        return response.json();
+        return response.json()
       }
     })
-    .then(function (data) {
+    .then(function(data) {
       console.log(data);
 
-      for (var i = 0; i < data.results.length; i++) {
+      for (var i = 0; i < data.results.length; i++ ) {
         console.log(data.results[i]);
-        displayMovie(data.results[i]);
+        displayMovie(data.results[i])
       }
-    });
+    })
 }
-
-//     //   displayMovie(data.results[i]);
-
-//     displayMovie(data.results[0]);
-
-    // var movieTitle = data.results[0].title;
-    // console.log(movieTitle)
-    // var movieImage = data.results[0].image;
-    // console.log(movieImage)
-    // var movieRating = data.results[0].contentRating;
-    // console.log(movieRating)
-    // var moviePlot = data.results[0].plot;
-    // console.log(moviePlot)
-    // var movieGenres = data.results[0].genres;
-    // console.log(movieGenres)
-
-  //   };
-  // });
 
 //getting value of user input
 function handleMovieSearchSubmit(event) {
   event.preventDefault();
 
-  var genreInputVal = document.getElementById("movie-search").value;
+  var genreInputVal = document.getElementById("movie-search").value
 
-  searchMovieAPI(genreInputVal);
+  searchMovieAPI(genreInputVal)
 }
 
-//when submit the form gets the user input and get
-movieForm.addEventListener("submit", handleMovieSearchSubmit);
+//when submit the form gets the user input and get 
+movieForm.addEventListener("submit", handleMovieSearchSubmit)
 
 //Reed script sandbox
 var drinkAPIKey = "5618241aea289752355d852d3165a903";
@@ -190,7 +182,6 @@ var drinkSearchHistory = JSON.parse(localStorage.getItem("drinks"));
 if (!drinkSearchHistory) {
   drinkSearchHistory = [];
 }
-
 // for handling submission of the drink form
 var drinkFormSubmitHandler = function (event) {
   event.preventDefault();
@@ -249,6 +240,7 @@ var drinkFormSubmitHandler = function (event) {
           drinkSource.text("Recipe from " + recipeSource + ".");
           document.getElementById("drink-link").innerHTML = source;
           document.getElementById("drink-save").innerHTML = save;
+
           var drink = {
             name: recipeName,
             url: drinkLink,
@@ -267,22 +259,19 @@ function createNav() {
   for (let i = 0; i < drinkSearchHistory.length; i++) {
     console.log(drinkSearchHistory[i]);
 
-    //get the drink url from storage on click
-    for (let e = 0; e < drinkLinkSearchHistory.length; e++) {
-      console.log(drinkLinkSearchHistory[e]);
-      // display the saved recipe in the sidebar and make it clickable
-      document.getElementById("savedDrinks").innerHTML =
-        "<a id='savedDrink' href=" +
-        drinkLinkSearchHistory[e] +
-        " target='_blank'>" +
-        drinkSearchHistory[i] +
-        "</a>";
+    // display the saved recipe in the sidebar and make it clickable
+    document.getElementById("savedDrinks").innerHTML =
+      "<a id='savedDrink' href=" +
+      drinkSearchHistory[i].url +
+      " target='_blank'>" +
+      drinkSearchHistory[i].name +
+      "</a>";
 
     console.log(drinkSearchHistory);
 
     // }
   }
 }
-}
+
 
 drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);
