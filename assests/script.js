@@ -303,52 +303,52 @@ var drinkFormSubmitHandler = function (event) {
   }
 };
 
-// function createNav() {
+function createNav() {
 
-//   //get the drink name from storage on click
-//   for (let i = 0; i < drinkSearchHistory.length; i++) {
-//     console.log(drinkSearchHistory[i]);
+  // get the drink name from storage on click
+  for (let i = 0; i < drinkSearchHistory.length; i++) {
+    console.log(drinkSearchHistory[i]);
 
-//     //get the drink url from storage on click
-//     for (let e = 0; e < drinkLinkSearchHistory.length; e++) {
-//       console.log(drinkLinkSearchHistory[e]);
-//       //display the saved recipe in the sidebar and make it clickable
-//       // document.getElementById("savedDrinks").innerHTML =
-//       //   "<a id='savedDrink' href=" +
-//       //   drinkLinkSearchHistory[e] +
-//       //   ">" +
-//       //   drinkSearchHistory[i] +
-//       //   "</a>";
+    //get the drink url from storage on click
+    for (let e = 0; e < drinkLinkSearchHistory.length; e++) {
+      console.log(drinkLinkSearchHistory[e]);
+      // display the saved recipe in the sidebar and make it clickable
+      document.getElementById("savedDrinks").innerHTML =
+        "<a id='savedDrink' href=" +
+        drinkLinkSearchHistory[e] +
+        " target='_blank'>" +
+        drinkSearchHistory[i] +
+        "</a>";
 
-//         // var drink = drinkSearchHistory;
-//         var bookedDrink = document.createElement("a");
-//         bookedDrink.innerHTML = drinkSearchHistory[i];
-//         bookedDrink.href = drinkLinkSearchHistory[e];
-//         bookedDrink.id = "savedDrink";
+        // var drink = drinkSearchHistory;
+        // var bookedDrink = document.createElement("a");
+        // bookedDrink.innerHTML = drink;
+        // bookedDrink.href = drinkLinkSearchHistory;
+        // bookedDrink.id = "savedDrink";
 
 
-//       // var bookedDrink = document.getElementById("savedDrinks").innerHTML =
-//       //   "<a id='savedDrink' href=" +
-//       //   drinkLinkSearchHistory[e] +
-//       //   ">" +
-//       //   drinkSearchHistory[i] +
-//       //   "</a>";
+      // var bookedDrink = document.getElementById("savedDrinks").innerHTML =
+      //   "<a id='savedDrink' href=" +
+      //   drinkLinkSearchHistory[e] +
+      //   ">" +
+      //   drinkSearchHistory[i] +
+      //   "</a>";
 
-//       // var container = document.getElementById("savedDrinks");
-//       // container.innerHTML = "";
+      var container = document.getElementById("savedDrinks");
+      // container.innerHTML = "";
       
-//       //set to localStorage
-//       localStorage.setItem("saved drink", bookedDrink);
-//       //add new drink to the drink array
-//       drinkSavedHistory.push(bookedDrink);
-//       document.getElementById("savedDrinks").appendChild = drinkSavedHistory
-//       //store updates
-//       // savedDrinkLinks();
-//       console.log(drinkSavedHistory);
+      //set to localStorage
+      // localStorage.setItem("saved drink", bookedDrink);
+      //add new drink to the drink array
+      // drinkSavedHistory.push(bookedDrink);
+      // container.appendChild(drinkSavedHistory);
+      //store updates
+      // savedDrinkLinks();
+      console.log(drinkSavedHistory);
       
-//     }
-//   }
-// }
+    }
+  }
+}
 // var saveDrink = document.querySelector("#save-btn");
 
 // drinkSaveHandler = function(event) {
@@ -374,7 +374,7 @@ function init() {
   //get stored drinks from localStorage
   var storedDrinks = JSON.parse(localStorage.getItem("drink recipe"));
   var storedLinks = JSON.parse(localStorage.getItem("drink link"));
-  var savedDrinkLinks = JSON.parse(localStorage.getItem("saved drinks"));
+  // var savedDrinkLinks = JSON.parse(localStorage.getItem("saved drinks"));
 
   // if drinks were retrieved from storage, update the drinks to the array
   if (storedDrinks !== null) {
@@ -383,9 +383,9 @@ function init() {
   if (storedLinks !== null) {
     drinkLinkSearchHistory = storedLinks;
   }
-  if (savedDrinkLinks !== null) {
-    drinkSavedHistory = savedDrinkLinks;
-  }
+  // if (savedDrinkLinks !== null) {
+  //   drinkSavedHistory = savedDrinkLinks;
+  // }
   // createNav();
 }
 
@@ -398,9 +398,9 @@ function storedLinks() {
   localStorage.setItem("drink link", JSON.stringify(drinkLinkSearchHistory));
 }
 
-function savedDrinkLinks() {
-  localStorage.setItem("saved drink", JSON.stringify(drinkSavedHistory));
-}
+// function savedDrinkLinks() {
+//   localStorage.setItem("saved drink", JSON.stringify(drinkSavedHistory));
+// }
 
 drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);
 
