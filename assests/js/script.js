@@ -72,22 +72,6 @@ var genreInput = document.getElementById("movie-search")
 var testURL =
   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
 
-//test
-// fetch(testURL, {
-//   method: "Get",
-//   credential: "same-origin",
-//   redirect: "follow",
-// })
-//   .then(function (response) {
-//     return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-
-//     //looping through results to get all the movie data in the genre
-//     for (var i = 0; i < data.results.length; i++) {
-//       console.log(data.results[i]);
-
 //append movie cards on screen
 function displayMovie(movieResults) {
   // console.log(movieResults);
@@ -160,24 +144,6 @@ function searchMovieAPI(genreInputVal) {
       }
     })
 }
-
-//     //   displayMovie(data.results[i]);
-
-//     displayMovie(data.results[0]);
-
-    // var movieTitle = data.results[0].title;
-    // console.log(movieTitle)
-    // var movieImage = data.results[0].image;
-    // console.log(movieImage)
-    // var movieRating = data.results[0].contentRating;
-    // console.log(movieRating)
-    // var moviePlot = data.results[0].plot;
-    // console.log(moviePlot)
-    // var movieGenres = data.results[0].genres;
-    // console.log(movieGenres)
-
-  //   };
-  // });
 
 //getting value of user input
 function handleMovieSearchSubmit(event) {
@@ -309,7 +275,6 @@ function createNav() {
         drinkSearchHistory[i] +
         "</a>";
 
-      
       console.log(drinkSavedHistory);
       
     }
