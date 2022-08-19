@@ -275,34 +275,6 @@ function createNav() {
         drinkSearchHistory[i] +
         "</a>";
 
-<<<<<<< HEAD
-        // var drink = drinkSearchHistory;
-        // var bookedDrink = document.createElement("a");
-        // bookedDrink.innerHTML = drink;
-        // bookedDrink.href = drinkLinkSearchHistory;
-        // bookedDrink.id = "savedDrink";
-
-
-      // var bookedDrink = document.getElementById("savedDrinks").innerHTML =
-      //   "<a id='savedDrink' href=" +
-      //   drinkLinkSearchHistory[e] +
-      //   ">" +
-      //   drinkSearchHistory[i] +
-      //   "</a>";
-
-      var container = document.getElementById("savedDrinks");
-      // container.innerHTML = "";
-      
-      //set to localStorage
-      // localStorage.setItem("saved drink", bookedDrink);
-      //add new drink to the drink array
-      // drinkSavedHistory.push(bookedDrink);
-      // container.appendChild(drinkSavedHistory);
-      //store updates
-      // savedDrinkLinks();
-=======
-      
->>>>>>> 81d553b41d21c5c401bb2fd62dec09d7d143b222
       console.log(drinkSavedHistory);
       
     }
@@ -323,15 +295,8 @@ function init() {
   if (storedLinks !== null) {
     drinkLinkSearchHistory = storedLinks;
   }
-<<<<<<< HEAD
-  // if (savedDrinkLinks !== null) {
-  //   drinkSavedHistory = savedDrinkLinks;
-  // }
-  // createNav();
-=======
  
   createNav();
->>>>>>> 81d553b41d21c5c401bb2fd62dec09d7d143b222
 }
 
 function storedDrinks() {
