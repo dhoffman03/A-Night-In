@@ -3,6 +3,7 @@
 
 Provide a short description explaining the what, why, and how of your project. Use the following questions as a guide:
 
+
 - What was your motivation?
 - Why did you build this project? (Note: the answer is not "Because it was a homework assignment.")
 - What problem does it solve?
@@ -49,10 +50,10 @@ To add a screenshot, create an `assets/images` folder in your repository and upl
 
 ## Credits
 
-List your collaborators, if any, with links to their GitHub profiles.
+Thank you everyone in Group 7!!
 
-If you used any third-party assets that require attribution, list the creators with links to their primary web presence in this section.
-
-If you followed tutorials, include links to those here as well.
+[Dymond Hoffman](https://github.com/dhoffman03)
+[Reed Meher](https://github.com/archonology)
+[Gia Tran](https://github.com/gt1222)
 
 
