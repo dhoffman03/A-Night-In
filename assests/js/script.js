@@ -69,8 +69,8 @@ var movieContentEl = document.querySelector("#movie-results-print");
 var movieForm = document.getElementById("movie-form");
 var genreInput = document.getElementById("movie-search");
 
-var testURL =
-  "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
+// var testURL =
+//   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
 
 //append movie cards on screen
 function displayMovie(movieResults) {
@@ -122,33 +122,32 @@ function displayMovie(movieResults) {
 }
 
 //search IMDB API
-// function searchMovieAPI(genreInputVal) {
-//   var partialURL = "https://imdb-api.com/API/AdvancedSearch/";
 
-//   if (genreInput) {
-//     newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal;
-//   }
+function searchMovieAPI(genreInputVal) {
 
-//   fetch(newMovieURL)
-//     .then(function (response) {
-//       if (response.ok) {
-//         return response.json();
-//       }
-//     })
-//     .then(function (data) {
-//       console.log(data);
+  var partialURL = "https://imdb-api.com/API/AdvancedSearch/"
 
-// // <<<<<<< Updated upstream
-// //       for (var i = 0; i < data.results.length; i++ ) {
-// // =======
-// //       //looping through to pull all movie data I need
-// //       for (var i = 0; i < data.results.length; i++) {
-// // >>>>>>> Stashed changes
-// //         console.log(data.results[i]);
-// //         displayMovie(data.results[i]);
-//       }
-//     });
-// }
+  if(genreInput) {
+    newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal
+  }
+
+  //fetching new url each time a genre input is entered
+  fetch(newMovieURL)
+    .then(function(response) {
+      if (response.ok) {
+        return response.json()
+      }
+    })
+    .then(function(data) {
+      console.log(data);
+
+      //looping through to pull all movie data I need
+      for (var i = 0; i < data.results.length; i++ ) {
+        console.log(data.results[i]);
+        displayMovie(data.results[i])
+      }
+    })
+}
 
 //getting value of user input
 function handleMovieSearchSubmit(event) {
