@@ -278,6 +278,7 @@ function saveDrinksToLocal() {
 
     savedDrinkHistory.unshift(savedDrink);
     localStorage.setItem("saved drinks", JSON.stringify(savedDrinkHistory));
+    addDrinksToSidebar();
     } 
 
     function addDrinksToSidebar() {
@@ -293,7 +294,7 @@ function saveDrinksToLocal() {
         document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
       }
     }
-    console.log(JSON.parse(localStorage.getItem("saved drinks"))[1].name);
+    // console.log(JSON.parse(localStorage.getItem("saved drinks"))[1].name);
 //this function displays the saved recipes after they are clicked in the sidebar
 function displaySaved() {
   console.log($("#savedDrink"));
@@ -305,14 +306,14 @@ function displaySaved() {
         var getbutton = $("#savedDrink")
         var getSavedDrink = getbutton[0].textContent;
         // console.log(savedDrinkHistory[i].getSavedDrink.url);
-          var drinkName = getSavedDrink
+          var drinkName = savedDrinkHistory[i].name
           var drinkLink = savedDrinkHistory[i].url;
           var ingredientsList = savedDrinkHistory[i].ingredientsList;
           var recipeSource = savedDrinkHistory[i].recipeSource;
           var drinkImage = savedDrinkHistory[i].drinkImage;
           var drinkSource = $("#drink-source");
           //display the recipe
-          $("#drink-title").text(getSavedDrink);
+          $("#drink-title").text(drinkName);
 
           //ingredient list
           let drinkPic =
