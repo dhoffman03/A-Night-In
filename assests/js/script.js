@@ -4,51 +4,55 @@
 var foodApiKey = "&app_key=d20058a43c19a20e533d6b06c2c26156";
 var foodAppId = "&app_id=9fc7bc31";
 
-var foodInputEl = $("#food-search-input");
-var foodTypeEl = $("#food-search");
+var foodInputEl= $("#food-search-input")
+var foodTypeEl = $("#food-search")
+
 
 //For testing
 var userFoodInput = "Steak";
 var userFoodType = "asian";
 var foodURL =
-  "https://api.edamam.com/api/recipes/v2?type=public&q=" +
-  userFoodInput +
-  foodAppId +
+
+  "https://api.edamam.com/api/recipes/v2?type=public&q=" + userFoodInput
+  +foodAppId +
   foodApiKey +
-  "&cuisineType=" +
-  userFoodType +
-  "&mealType=Dinner&random=true";
+  "&cuisineType=" + userFoodType
+  +"&mealType=Dinner&random=true";
+
 
 fetch(foodURL).then(function (response) {
   if (response.ok) {
     response.json().then(function (data) {
-      console.log(data);
-    });
+
+      console.log(data)
+    })
   }
-});
+})
 
 //Handle food form submission
 function getFoodApi() {
+
   var userFoodInput = foodInputEl.value;
   var userFoodType = foodTypeEl.value;
 
   var foodURL =
-    "https://api.edamam.com/api/recipes/v2?type=public&q=" +
-    userFoodInput +
-    foodAppId +
-    userFoodType;
-  foodApiKey + "&cuisineType=" + +"&mealType=Dinner&random=true";
 
-  //when user inputs are true --> request api URL --> run recipe function
-  if (userFoodInput && userFoodType) {
+  "https://api.edamam.com/api/recipes/v2?type=public&q=" + userFoodInput
+  +foodAppId + userFoodType
+  foodApiKey +
+  "&cuisineType=" +
+  +"&mealType=Dinner&random=true";
+
+   //when user inputs are true --> request api URL --> run recipe function
+   if (userFoodInput && userFoodType) {
     fetch(foodURL).then(function (response) {
-      if (response.ok) {
+      if(response.ok) {
         response.json().then(function (data) {
           //run recipe function
           getFoodRecipe(data);
-        });
+        })
       }
-    });
+    })
   }
 }
 
@@ -57,20 +61,24 @@ function getFoodRecipe(data) {
   //display to html food tab
 }
 
-$("#food-btn").on("click", function (e) {
+
+$("#food-btn").on("click", function(e) {
   e.preventDefault();
 
   getFoodApi();
-});
+
+}) 
+
 
 //Gia script sandbox
 var movieAPIKey = "k_4qje020e";
 var movieContentEl = document.querySelector("#movie-results-print");
-var movieForm = document.getElementById("movie-form");
-var genreInput = document.getElementById("movie-search");
+var movieForm = document.getElementById("movie-form")
+var genreInput = document.getElementById("movie-search")
 
-var testURL =
-  "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
+
+// var testURL =
+//   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
 
 //append movie cards on screen
 function displayMovie(movieResults) {
@@ -122,45 +130,43 @@ function displayMovie(movieResults) {
 }
 
 //search IMDB API
-// function searchMovieAPI(genreInputVal) {
-//   var partialURL = "https://imdb-api.com/API/AdvancedSearch/";
+function searchMovieAPI(genreInputVal) {
 
-//   if (genreInput) {
-//     newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal;
-//   }
+  var partialURL = "https://imdb-api.com/API/AdvancedSearch/"
 
-//   fetch(newMovieURL)
-//     .then(function (response) {
-//       if (response.ok) {
-//         return response.json();
-//       }
-//     })
-//     .then(function (data) {
-//       console.log(data);
+  if(genreInput) {
+    newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal
+  }
 
-// // <<<<<<< Updated upstream
-// //       for (var i = 0; i < data.results.length; i++ ) {
-// // =======
-// //       //looping through to pull all movie data I need
-// //       for (var i = 0; i < data.results.length; i++) {
-// // >>>>>>> Stashed changes
-// //         console.log(data.results[i]);
-// //         displayMovie(data.results[i]);
-//       }
-//     });
-// }
+  //fetching new url each time a genre input is entered
+  fetch(newMovieURL)
+    .then(function(response) {
+      if (response.ok) {
+        return response.json()
+      }
+    })
+    .then(function(data) {
+      console.log(data);
+
+      //looping through to pull all movie data I need
+      for (var i = 0; i < data.results.length; i++ ) {
+        console.log(data.results[i]);
+        displayMovie(data.results[i])
+      }
+    })
+}
 
 //getting value of user input
 function handleMovieSearchSubmit(event) {
   event.preventDefault();
 
-  var genreInputVal = document.getElementById("movie-search").value;
+  var genreInputVal = document.getElementById("movie-search").value
 
-  searchMovieAPI(genreInputVal);
+  searchMovieAPI(genreInputVal)
 }
 
-//when submit the form gets the user input and get
-movieForm.addEventListener("submit", handleMovieSearchSubmit);
+//when submit the form gets the user input and get 
+movieForm.addEventListener("submit", handleMovieSearchSubmit)
 
 //Reed script sandbox
 var drinkAPIKey = "df9b46d3b85383d3993cdc5804ec9032";
