@@ -165,6 +165,7 @@ form {
     background-color: var(--brunt);
 }
 
+/* Change background and text color when button is hovered */
 .custom-btn:hover {
     background-color: var(--blue);
     color: var(--burnt-light);
