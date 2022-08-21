@@ -275,12 +275,13 @@ function displaySaved() {
   
   // var drinkSelect = document.querySelector("#savedDrink").innerHTML;
   for (let i = 0; i < savedDrinkHistory.length; i++) {
-    console.log(savedDrinkHistory[i]);
+    console.log(savedDrinkHistory[i].name);
+    console.log(savedDrinkHistory[i].url);
     
-        var getbutton = $("#savedDrink")
-        var getSavedDrink = getbutton[0].textContent;
+        // var getbutton = $("#savedDrink")
+        // var getSavedDrink = getbutton[0].textContent;
         // console.log(savedDrinkHistory[i].getSavedDrink.url);
-          var drinkName = savedDrinkHistory[i].name
+          var drinkName = savedDrinkHistory[i].name;
           var drinkLink = savedDrinkHistory[i].url;
           var ingredientsList = savedDrinkHistory[i].ingredientsList;
           var recipeSource = savedDrinkHistory[i].recipeSource;
