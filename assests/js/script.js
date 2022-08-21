@@ -131,6 +131,9 @@ function searchMovieAPI(genreInputVal) {
 function handleMovieSearchSubmit(event) {
   event.preventDefault();
 
+  //clears out the searches each time
+  movieContentEl.innerHTML = "";
+
   var genreInputVal = document.getElementById("movie-search").value;
 
   searchMovieAPI(genreInputVal);
