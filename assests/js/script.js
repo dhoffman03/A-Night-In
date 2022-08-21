@@ -1,6 +1,4 @@
-// //for the tabs /RM
-
-//Dymond script sandbox
+//Declare global vars
 var foodApiKey = "&app_key=d20058a43c19a20e533d6b06c2c26156";
 var foodAppId = "&app_id=9fc7bc31";
 var foodFormEl = $("#food-form")
@@ -14,7 +12,7 @@ function handleFoodSearchSubmit() {
   var foodURL =
     "https://api.edamam.com/api/recipes/v2?type=public&q=" + foodAppId +
     foodApiKey +
-    "&health=alcohol-free&cuisineType=" + userFoodType
+    "&cuisineType=" + userFoodType
     + "&mealType=Dinner&random=true";
 
 
@@ -22,8 +20,38 @@ function handleFoodSearchSubmit() {
   fetch(foodURL).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data.hits[0].recipe)
-        console.log(userFoodType)
+        console.log(data.hits[0].recipe);
+        console.log(userFoodType);
+
+        //Declare local vars from api recipe data
+        var foodImg = data.hits[0].recipe.images.SMALL.url;
+        var recipeLabel = data.hits[0].recipe.label;
+        var ingList = data.hits[0].recipe.ingredientLines;
+        var foodSource = data.hits[0].recipe.source;
+        var foodLink = data.hits[0].recipe.url;
+
+        let foodIngList = "<ul>";
+
+        //Creat <a> and link recipe url
+        let fullRecipe = "<a class='drink-ext-link' href=" + foodLink + ">Click here for complete directions.</a>";
+
+        //Create a save btn
+        let foodSave = "<button class='save-recipe rounded-md p-2 mt-2' id='food-save-btn;'>Save Recipe</button>";
+
+        //make recipe.ingredientsLines array into <li>
+        for (var i = 0; i < ingList.length; i++) {
+          foodIngList += "<li>" + ingList[i] + "</li><br>";
+
+        } foodIngList += "</ul>";
+
+        //Display results on page
+        $("#food-img").html($("#food-img").attr("src", foodImg));
+        $("#food-label").text(recipeLabel);
+        $("#food-list").html(foodIngList);
+        $("#food-source").text("Recipe from " + foodSource + ".");
+        $("#food-link").html(fullRecipe);
+        $("#food-save").html(foodSave)
+
       })
     }
   })
@@ -265,7 +293,7 @@ function saveDrinksToLocal() {
         document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
       }
     }
-    console.log(JSON.parse(localStorage.getItem("saved drinks"))[1].name);
+   // console.log(JSON.parse(localStorage.getItem("saved drinks"))[1].name);
 //this function displays the saved recipes after they are clicked in the sidebar
 function displaySaved() {
   console.log($("#savedDrink"));
