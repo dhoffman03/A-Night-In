@@ -39,9 +39,8 @@ foodFormEl.on("submit", function (event) {
 //Gia script sandbox
 var movieAPIKey = "k_4qje020e";
 var movieContentEl = document.querySelector("#movie-results-print");
-var movieForm = document.getElementById("movie-form")
-var genreInput = document.getElementById("movie-search")
-
+var movieForm = document.getElementById("movie-form");
+var genreInput = document.getElementById("movie-search");
 
 // var testURL =
 //   "https://imdb-api.com/API/AdvancedSearch/k_4qje020e/?genres=action";
@@ -97,13 +96,12 @@ function displayMovie(movieResults) {
 
 //search IMDB API
 
-
 function searchMovieAPI(genreInputVal) {
 
   var partialURL = "https://imdb-api.com/API/AdvancedSearch/"
 
   if(genreInput) {
-    newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal
+    newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal + "&count=250"
   }
 
   //fetching new url each time a genre input is entered
@@ -116,9 +114,14 @@ function searchMovieAPI(genreInputVal) {
     .then(function(data) {
       console.log(data);
 
+      data.results.sort (function(){
+        return Math.floor(Math.random()* 2) * 2-1
+      }) 
+      
+      data.results.splice(50)
       //looping through to pull all movie data I need
-      for (var i = 0; i < data.results.length; i++ ) {
-        console.log(data.results[i]);
+      for (var i = 0; i < 5; i++ ) {
+        // console.log(data.results[i]);
         displayMovie(data.results[i])
       }
     })
@@ -128,13 +131,16 @@ function searchMovieAPI(genreInputVal) {
 function handleMovieSearchSubmit(event) {
   event.preventDefault();
 
-  var genreInputVal = document.getElementById("movie-search").value
+  //clears out the searches each time
+  movieContentEl.innerHTML = "";
 
-  searchMovieAPI(genreInputVal)
+  var genreInputVal = document.getElementById("movie-search").value;
+
+  searchMovieAPI(genreInputVal);
 }
 
-//when submit the form gets the user input and get 
-movieForm.addEventListener("submit", handleMovieSearchSubmit)
+//when submit the form gets the user input and get
+movieForm.addEventListener("submit", handleMovieSearchSubmit);
 
 //Reed script sandbox
 var drinkAPIKey = "df9b46d3b85383d3993cdc5804ec9032";
