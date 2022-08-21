@@ -135,7 +135,7 @@ function searchMovieAPI(genreInputVal) {
   var partialURL = "https://imdb-api.com/API/AdvancedSearch/"
 
   if(genreInput) {
-    newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal
+    newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal + "&count=250"
   }
 
   //fetching new url each time a genre input is entered
@@ -148,9 +148,14 @@ function searchMovieAPI(genreInputVal) {
     .then(function(data) {
       console.log(data);
 
+      data.results.sort (function(){
+        return Math.floor(Math.random()* 2) * 2-1
+      }) 
+      
+      data.results.splice(50)
       //looping through to pull all movie data I need
-      for (var i = 0; i < data.results.length; i++ ) {
-        console.log(data.results[i]);
+      for (var i = 0; i < 5; i++ ) {
+        // console.log(data.results[i]);
         displayMovie(data.results[i])
       }
     })
