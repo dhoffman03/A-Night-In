@@ -258,12 +258,20 @@ function saveDrinksToLocal() {
 
     savedDrinkHistory.unshift(savedDrink);
     localStorage.setItem("saved drinks", JSON.stringify(savedDrinkHistory));
-    addDrinksToSidebar();
+    
+    var saveDrinkToSidebar = document.createElement("a");
+        saveDrinkToSidebar.id = "savedDrink";
+        saveDrinkToSidebar.class = "savedDrink";
+        saveDrinkToSidebar.href = "javascript:displaySaved();";
+        saveDrinkToSidebar.innerHTML = savedDrinkHistory[0].name;
+    
+        document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
+    
     } 
 
     function addDrinksToSidebar() {
       for (let i = 0; i < savedDrinkHistory.length; i++) {
-        console.log(savedDrinkHistory[i]);
+        // console.log(savedDrinkHistory[i]);
     
         var saveDrinkToSidebar = document.createElement("a");
         saveDrinkToSidebar.id = "savedDrink";
