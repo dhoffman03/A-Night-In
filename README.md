@@ -9,6 +9,8 @@ Provide a short description explaining the what, why, and how of your project. U
 - What problem does it solve?
 - What did you learn?
 
+
+
 ## User Story
 
 ```
@@ -42,11 +44,16 @@ What are the steps required to install your project? Provide a step-by-step desc
 
 Provide instructions and examples for use. Include screenshots as needed.
 
-To add a screenshot, create an `assets/images` folder in your repository and upload your screenshot to it. Then, using the relative filepath, add it to your README using the following syntax:
+The user would be directed to the homepage where they can decide to continue and create their "Night In". After, the user is directed to the main page where they can select
 
-    ```md
-    ![alt text](assets/images/screenshot.png)
-    ```
+
+![homepage background of cozy bed looking out a window](assests/images/homepage.png)
+
+![mainpage with three options to choose a drink, meal, and movie genre](assests/images/mainpage.png)
+
+
+## Deployed Site
+https://dhoffman03.github.io/A-Night-In/
 
 ## Credits
 
