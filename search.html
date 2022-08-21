@@ -43,19 +43,15 @@
   </h1>
 
   <!-- search boxes -->
-  <section class="search-cards display: flex justify-center flex-wrap space-x-7 mt-20">
+  <section class="search-cards display: flex justify-center flex-wrap space-x-10 mt-20">
     <!-- food search box -->
-    <div class="foodCard">
+    <div>
       <form class="search-form p-7 m-5 rounded-lg custom-form" id="food-form">
-        <h1 class="text-2xl">Pick Your Meal</h1>
-        <p>Choose the type of cuisine you're feeling tonight</p>
+        <h1 class="text-2xl text-center mb-2">Pick Your Meal</h1>
+        <p class="text-center">Choose the type of cuisine you're feeling tonight</p>
         <br />
-        <input type="text" class="rounded-md p-2" id="food-search-input" placeholder="Steak" />
-        <label for="food-search-input">Pick ingredient</label>
-        <br />
-        <br />
-        <select class="format-input rounded-md custom-input p-2" id="food-search">
-          <option value="" disabled selected>Select a Cuisine Type</option>
+        <select class="format-input rounded-md custom-input p-2 mx-8 w-9/12" id="food-search">
+          <option value="" disabled selected>Select a Cuisine</option>
           <option value="american">American</option>
           <option value="asian">Asian</option>
           <option value="caribbean">Caribbean</option>
@@ -63,7 +59,9 @@
           <option value="mexican">Mexican</option>
           <option value="world">World</option>
         </select>
-        <button id="food-btn" class="btn p-2 rounded-lg ml-2 custom-btn">
+        <br />
+        <br />
+        <button id="food-btn" class="btn p-2 mx-8 rounded-lg w-9/12 custom-btn">
           Search
         </button>
       </form>
@@ -72,11 +70,10 @@
     <!-- drink search box -->
     <div>
       <form class="search-form p-7 m-5 rounded-lg custom-form" id="drink-form">
-        <h1 class="text-2xl">Pick Your Drink</h1>
-        <p>Enter your favorite spirit or drink ingredient</p>
+        <h1 class="text-2xl text-center mb-2">Pick Your Drink</h1>
+        <p class="text-center">Enter your favorite spirit or drink ingredient</p>
         <br />
-        <input type="text" class="rounded-md p-2" id="drink-search-input" placeholder=" Bourbon" />
-        <label for="drink-search-input">Pick ingredient</label>
+        <input type="text" class="rounded-md p-2 mx-8 w-9/12 custom-input" id="drink-search-input" placeholder="Enter Ingredient" />
         <br />
         <br />
         <!-- <select class="format-input rounded-md custom-input p-2" id="drink-search">
@@ -85,7 +82,7 @@
           <option value="alcohol-free">Alcohol-free</option>
         </select> -->
         <!-- <label for="drink-search">Pick Style</label> -->
-        <button id="drink-btn" class="btn p-2 rounded-lg ml-2 custom-btn">
+        <button id="drink-btn" class="btn p-2 mx-8 rounded-lg w-9/12 custom-btn">
           Search
         </button>
       </form>
@@ -94,10 +91,10 @@
     <!-- movie search box -->
     <div>
       <form class="search-form p-7 m-5 rounded-lg custom-form" id="movie-form">
-        <h1 class="text-2xl">Pick Your Genre</h1>
-        <p>Select a genre you want to watch</p>
+        <h1 class="text-2xl text-center mb-2">Pick Your Genre</h1>
+        <p class="text-center">Select a genre you want to watch</p>
         <br />
-        <select class="format-input rounded-md custom-input p-2" id="movie-search">
+        <select class="format-input rounded-md custom-input p-2 mx-8 w-9/12" id="movie-search">
           <option value="" disabled selected>Select a Genre</option>
           <option value="action">Action</option>
           <option value="adventure">Adventure</option>
@@ -108,7 +105,9 @@
           <option value="horror">Horror</option>
           <option value="thriller">Thriller</option>
         </select>
-        <button id="movie-btn" class="btn p-2 rounded-lg ml-2 custom-btn">
+        <br />
+        <br />
+        <button id="movie-btn" class="btn p-2 mx-8 rounded-lg w-9/12 custom-btn">
           Search
         </button>
       </form>
@@ -205,5 +204,3 @@
 </body>
 
 </html>
-
-<a href="https://tastykitchen.com/recipes/drinks/snickerdoodle-martini/" target="_blank"></a>
