@@ -130,6 +130,10 @@ function displayMovie(movieResults) {
 }
 
 //search IMDB API
+<<<<<<< HEAD
+=======
+
+>>>>>>> bc3cecd53b5399b722a8ebd27217c228a1ee13fa
 function searchMovieAPI(genreInputVal) {
 
   var partialURL = "https://imdb-api.com/API/AdvancedSearch/"
