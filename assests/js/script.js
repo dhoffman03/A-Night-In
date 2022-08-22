@@ -118,7 +118,7 @@ function searchMovieAPI(genreInputVal) {
       }) 
       
       data.results.splice(50)
-      //looping through to pull all movie data I need
+      //looping through to pull 5 movies each time to display
       for (var i = 0; i < 5; i++ ) {
         // console.log(data.results[i]);
         displayMovie(data.results[i])
