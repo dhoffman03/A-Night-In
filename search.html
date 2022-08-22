@@ -24,9 +24,8 @@
   <section>
     <div id="historySidebar" class="sidebar">
       <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-      <a href="#">Food</a>
+      <div id="savedMealRecipes"></div>
       <div id="savedDrinks"></div>
-      <a href="#">Movies</a>
     </div>
 
     <div id="main">
@@ -57,7 +56,6 @@
           <option value="caribbean">Caribbean</option>
           <option value="italian">Italian</option>
           <option value="mexican">Mexican</option>
-          <option value="world">World</option>
         </select>
         <br />
         <br />
@@ -129,10 +127,19 @@
 
     <!-- food results -->
     <div id="food" class="tabcontent">
-      <h3></h3>
-      <p></p>
-
-      <div id="food-recipe-print"></div>
+      <div class="ml-5 mt-5">
+        <img src="" class="rounded-lg" id="food-img">
+        <h2 class="mt-3 mb-3 text-xl" id="food-label"></h2>
+        <div id="food-list"></div>
+        <br>
+        <div id="food-source"></div>
+        <div id="food-link"></div>
+        <button class="save-recipe rounded-md p-2 mt-2 invisible" id="food-save">Save Recipe</button>
+        <br>
+      </div>
+        <br>
+        <br>
+        <br>
     </div>
 
       <!-- drink recipe results -->
