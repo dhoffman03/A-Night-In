@@ -113,15 +113,6 @@ function searchMovieAPI(genreInputVal) {
     .then(function (data) {
       console.log(data);
 
-<<<<<<< HEAD
-      data.results.sort (function(){
-        return Math.floor(Math.random()* 2) * 2-1
-      }) 
-      
-      data.results.splice(50)
-      //looping through to pull 5 movies each time to display
-      for (var i = 0; i < 5; i++ ) {
-=======
       data.results.sort(function () {
         return Math.floor(Math.random() * 2) * 2 - 1;
       });
@@ -129,7 +120,6 @@ function searchMovieAPI(genreInputVal) {
       data.results.splice(50);
       //looping through to pull all movie data I need
       for (var i = 0; i < 5; i++) {
->>>>>>> 5a9c9d4ca9fa83ab1059f65e7cddad73840ea031
         // console.log(data.results[i]);
         displayMovie(data.results[i]);
       }
