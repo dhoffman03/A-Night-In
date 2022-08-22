@@ -57,6 +57,8 @@ The user would be directed to the homepage where they can decide to continue and
 
 ![movie genre picked and loads 5 movies on screen](assests/images/movies-load.png)
 
+## Deployed Sites
+
 Deployed Site: https://dhoffman03.github.io/A-Night-In/
 GitHub Repo: https://github.com/dhoffman03/A-Night-In
 
