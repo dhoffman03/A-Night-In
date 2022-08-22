@@ -258,11 +258,20 @@ function saveDrinksToLocal() {
 
     savedDrinkHistory.unshift(savedDrink);
     localStorage.setItem("saved drinks", JSON.stringify(savedDrinkHistory));
+    
+    var saveDrinkToSidebar = document.createElement("a");
+        saveDrinkToSidebar.id = "savedDrink";
+        saveDrinkToSidebar.class = "savedDrink";
+        saveDrinkToSidebar.href = "javascript:displaySaved();";
+        saveDrinkToSidebar.innerHTML = savedDrinkHistory[0].name;
+    
+        document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
+    
     } 
 
     function addDrinksToSidebar() {
       for (let i = 0; i < savedDrinkHistory.length; i++) {
-        console.log(savedDrinkHistory[i]);
+        // console.log(savedDrinkHistory[i]);
     
         var saveDrinkToSidebar = document.createElement("a");
         saveDrinkToSidebar.id = "savedDrink";
@@ -273,26 +282,27 @@ function saveDrinksToLocal() {
         document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
       }
     }
-    console.log(JSON.parse(localStorage.getItem("saved drinks"))[1].name);
+    // console.log(JSON.parse(localStorage.getItem("saved drinks"))[1].name);
 //this function displays the saved recipes after they are clicked in the sidebar
 function displaySaved() {
   console.log($("#savedDrink"));
   
   // var drinkSelect = document.querySelector("#savedDrink").innerHTML;
   for (let i = 0; i < savedDrinkHistory.length; i++) {
-    console.log(savedDrinkHistory[i]);
+    console.log(savedDrinkHistory[i].name);
+    console.log(savedDrinkHistory[i].url);
     
-        var getbutton = $("#savedDrink")
-        var getSavedDrink = getbutton[0].textContent;
+        // var getbutton = $("#savedDrink")
+        // var getSavedDrink = getbutton[0].textContent;
         // console.log(savedDrinkHistory[i].getSavedDrink.url);
-          var drinkName = getSavedDrink
+          var drinkName = savedDrinkHistory[i].name;
           var drinkLink = savedDrinkHistory[i].url;
           var ingredientsList = savedDrinkHistory[i].ingredientsList;
           var recipeSource = savedDrinkHistory[i].recipeSource;
           var drinkImage = savedDrinkHistory[i].drinkImage;
           var drinkSource = $("#drink-source");
           //display the recipe
-          $("#drink-title").text(getSavedDrink);
+          $("#drink-title").text(drinkName);
 
           //ingredient list
           let drinkPic =
