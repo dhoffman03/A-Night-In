@@ -3,30 +3,30 @@
 //Dymond script sandbox
 var foodApiKey = "&app_key=d20058a43c19a20e533d6b06c2c26156";
 var foodAppId = "&app_id=9fc7bc31";
-var foodFormEl = $("#food-form")
+var foodFormEl = $("#food-form");
 
 //Handle submissions from drink form
 function handleFoodSearchSubmit() {
-
   var userFoodType = $("#food-search").val();
 
   //Declare edamamAPI url
   var foodURL =
-    "https://api.edamam.com/api/recipes/v2?type=public&q=" + foodAppId +
+    "https://api.edamam.com/api/recipes/v2?type=public&q=" +
+    foodAppId +
     foodApiKey +
-    "&health=alcohol-free&cuisineType=" + userFoodType
-    + "&mealType=Dinner&random=true";
-
+    "&health=alcohol-free&cuisineType=" +
+    userFoodType +
+    "&mealType=Dinner&random=true";
 
   //Request api url
   fetch(foodURL).then(function (response) {
     if (response.ok) {
       response.json().then(function (data) {
-        console.log(data.hits[0].recipe)
-        console.log(userFoodType)
-      })
+        console.log(data.hits[0].recipe);
+        console.log(userFoodType);
+      });
     }
-  })
+  });
 }
 
 //Run function when form is submited
@@ -96,23 +96,24 @@ function displayMovie(movieResults) {
 
 //search IMDB API
 function searchMovieAPI(genreInputVal) {
+  var partialURL = "https://imdb-api.com/API/AdvancedSearch/";
 
-  var partialURL = "https://imdb-api.com/API/AdvancedSearch/"
-
-  if(genreInput) {
-    newMovieURL = partialURL + movieAPIKey + "/?genres=" + genreInputVal + "&count=250"
+  if (genreInput) {
+    newMovieURL =
+      partialURL + movieAPIKey + "/?genres=" + genreInputVal + "&count=250";
   }
 
   //fetching new url each time a genre input is entered
   fetch(newMovieURL)
-    .then(function(response) {
+    .then(function (response) {
       if (response.ok) {
-        return response.json()
+        return response.json();
       }
     })
-    .then(function(data) {
+    .then(function (data) {
       console.log(data);
 
+<<<<<<< HEAD
       data.results.sort (function(){
         return Math.floor(Math.random()* 2) * 2-1
       }) 
@@ -120,10 +121,19 @@ function searchMovieAPI(genreInputVal) {
       data.results.splice(50)
       //looping through to pull 5 movies each time to display
       for (var i = 0; i < 5; i++ ) {
+=======
+      data.results.sort(function () {
+        return Math.floor(Math.random() * 2) * 2 - 1;
+      });
+
+      data.results.splice(50);
+      //looping through to pull all movie data I need
+      for (var i = 0; i < 5; i++) {
+>>>>>>> 5a9c9d4ca9fa83ab1059f65e7cddad73840ea031
         // console.log(data.results[i]);
-        displayMovie(data.results[i])
+        displayMovie(data.results[i]);
       }
-    })
+    });
 }
 
 //getting value of user input
@@ -142,8 +152,8 @@ function handleMovieSearchSubmit(event) {
 movieForm.addEventListener("submit", handleMovieSearchSubmit);
 
 //Reed script sandbox
-var drinkAPIKey = "df9b46d3b85383d3993cdc5804ec9032";
-var appID = "d7c45f17";
+var drinkAPIKey = "da333d9db486c458f3dfb0ea2d6b6ecd";
+var appID = "1e7f6e54";
 var drinkFormEl = document.querySelector("#drink-form");
 var drinkSearchInputEl = document.querySelector("#drink-search-input");
 var userDrinkInput = drinkSearchInputEl.value.trim();
@@ -178,28 +188,28 @@ var drinkFormSubmitHandler = function (event) {
       if (response.ok) {
         response.json().then(function (data) {
           //check how the process is going
-          console.log(data.hits[0].recipe.images.SMALL.url);
-          console.log(userDrinkInput);
-         
+          // console.log(data.hits[0].recipe.images.SMALL.url);
+          // console.log(userDrinkInput);
+
           var drinkName = data.hits[0].recipe.label;
           var ingredientsList = data.hits[0].recipe.ingredientLines;
           var recipeSource = data.hits[0].recipe.source;
           var drinkImage = data.hits[0].recipe.images.SMALL.url;
           var drinkLink = data.hits[0].recipe.url;
           var drinkSource = $("#drink-source");
-    
+
           //display the recipe
           $("#drink-title").text(drinkName);
 
-          //ingredient list
-          // let ingeLinesLength = ingredientsList.length;
-          console.log(ingredientsList);
+          // console.log(ingredientsList);
           let drinkPic =
-            "<img class='drink-pic rounded-lg' src=" + drinkImage +
+            "<img class='drink-pic rounded-lg' src=" +
+            drinkImage +
             " alt='Drink image'>";
           let ingreText = "<ul>";
           let source =
-            "<a class='drink-ext-link' href=" + drinkLink +
+            "<a class='drink-ext-link' href=" +
+            drinkLink +
             ">Click here for complete directions.</a>";
           let save =
             "<button class='save-recipe rounded-md p-2 mt-2' id='save-btn' onclick='javascript:saveDrinksToLocal();'>Save Recipe</button";
@@ -215,13 +225,13 @@ var drinkFormSubmitHandler = function (event) {
           document.getElementById("drink-link").innerHTML = source;
           document.getElementById("drink-save").innerHTML = save;
 
-          //to reduce the need for multiple fetches, drinkData saves everything I need to call back saved recipes without more fetches. 
+          //to reduce the need for multiple fetches, drinkData saves everything I need to call back saved recipes without more fetches.
           var drinkData = {
             drinkName: data.hits[0].recipe.label,
             ingredientsList: data.hits[0].recipe.ingredientLines,
             recipeSource: data.hits[0].recipe.source,
             drinkImage: data.hits[0].recipe.images.SMALL.url,
-            drinkLink: data.hits[0].recipe.url
+            drinkLink: data.hits[0].recipe.url,
           };
           console.log(drinkData);
           console.log(save);
@@ -231,107 +241,104 @@ var drinkFormSubmitHandler = function (event) {
             "all drinks",
             JSON.stringify(allDrinkSearchHistory)
           );
-          
         });
       }
     });
   }
 };
 // check on data status -- need to know the value of saved drinks so that I can set up the 'if' statement correctly
-console.log(allDrinkSearchHistory);
-console.log(savedDrinkHistory);
+// console.log(allDrinkSearchHistory);
+// console.log(savedDrinkHistory);
 
 //this function gets the saved drinks into local storage
 function saveDrinksToLocal() {
-    console.log(allDrinkSearchHistory[0].drinkName);
-    
-    //set to the current recipe to localStorage
-    var savedDrink = {
-      name: allDrinkSearchHistory[0].drinkName,
-      url: allDrinkSearchHistory[0].drinkLink,
-      ingredientsList: allDrinkSearchHistory[0].ingredientsList,
-      recipeSource: allDrinkSearchHistory[0].recipeSource,
-      drinkImage: allDrinkSearchHistory[0].drinkImage,
-      drinkLink: allDrinkSearchHistory[0].drinkLink,
-    };
+  // console.log(allDrinkSearchHistory[0].drinkName);
 
-    savedDrinkHistory.unshift(savedDrink);
-    localStorage.setItem("saved drinks", JSON.stringify(savedDrinkHistory));
-    
+  //set to the current recipe to localStorage
+  var savedDrink = {
+    name: allDrinkSearchHistory[0].drinkName,
+    url: allDrinkSearchHistory[0].drinkLink,
+    ingredientsList: allDrinkSearchHistory[0].ingredientsList,
+    recipeSource: allDrinkSearchHistory[0].recipeSource,
+    drinkImage: allDrinkSearchHistory[0].drinkImage,
+    drinkLink: allDrinkSearchHistory[0].drinkLink,
+  };
+
+  savedDrinkHistory.unshift(savedDrink);
+  localStorage.setItem("saved drinks", JSON.stringify(savedDrinkHistory));
+
+  var saveDrinkToSidebar = document.createElement("a");
+  saveDrinkToSidebar.id = "savedDrink";
+  saveDrinkToSidebar.class = "savedDrink";
+  saveDrinkToSidebar.href = "javascript:displaySaved();";
+  saveDrinkToSidebar.innerHTML = savedDrinkHistory[0].name;
+
+  document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
+}
+
+function addDrinksToSidebar() {
+  for (let i = 0; i < savedDrinkHistory.length; i++) {
     var saveDrinkToSidebar = document.createElement("a");
-        saveDrinkToSidebar.id = "savedDrink";
-        saveDrinkToSidebar.class = "savedDrink";
-        saveDrinkToSidebar.href = "javascript:displaySaved();";
-        saveDrinkToSidebar.innerHTML = savedDrinkHistory[0].name;
-    
-        document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
-    
-    } 
+    saveDrinkToSidebar.id = "savedDrink";
+    saveDrinkToSidebar.class = "savedDrink";
+    saveDrinkToSidebar.href = "javascript:displaySaved();";
+    saveDrinkToSidebar.innerHTML = savedDrinkHistory[i].name;
 
-    function addDrinksToSidebar() {
-      for (let i = 0; i < savedDrinkHistory.length; i++) {
-        // console.log(savedDrinkHistory[i]);
-    
-        var saveDrinkToSidebar = document.createElement("a");
-        saveDrinkToSidebar.id = "savedDrink";
-        saveDrinkToSidebar.class = "savedDrink";
-        saveDrinkToSidebar.href = "javascript:displaySaved();";
-        saveDrinkToSidebar.innerHTML = savedDrinkHistory[i].name;
-    
-        document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
-      }
-    }
-    // console.log(JSON.parse(localStorage.getItem("saved drinks"))[1].name);
+    document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
+  }
+}
+// console.log(JSON.parse(localStorage.getItem("saved drinks"))[1].name);
+
 //this function displays the saved recipes after they are clicked in the sidebar
 function displaySaved() {
-  console.log($("#savedDrink"));
-  
+  // console.log($("#savedDrink"));
+
   // var drinkSelect = document.querySelector("#savedDrink").innerHTML;
   for (let i = 0; i < savedDrinkHistory.length; i++) {
     console.log(savedDrinkHistory[i].name);
     console.log(savedDrinkHistory[i].url);
-    
-        // var getbutton = $("#savedDrink")
-        // var getSavedDrink = getbutton[0].textContent;
-        // console.log(savedDrinkHistory[i].getSavedDrink.url);
-          var drinkName = savedDrinkHistory[i].name;
-          var drinkLink = savedDrinkHistory[i].url;
-          var ingredientsList = savedDrinkHistory[i].ingredientsList;
-          var recipeSource = savedDrinkHistory[i].recipeSource;
-          var drinkImage = savedDrinkHistory[i].drinkImage;
-          var drinkSource = $("#drink-source");
-          //display the recipe
-          $("#drink-title").text(drinkName);
 
-          //ingredient list
-          let drinkPic =
-            "<img class='drink-pic rounded-lg' src=" +
-            drinkImage +
-            " alt='Drink image'>";
-          let ingreText = "<ul>";
-          let source =
-            "<a class='drink-ext-link' href=" +
-            drinkLink +
-            " target='_blank'" +
-            ">Click here for complete directions.</a>";
-            for (let i = 0; i < ingredientsList.length; i++) {
-              ingreText += "<li>" + ingredientsList[i] + "</li<br>";
-            }
-          ingreText += "</ul>";
-          //display list
-          document.getElementById("drink-ingredients").innerHTML = ingreText;
-          //a line for the source link
-          document.getElementById("drink-image").innerHTML = drinkPic;
-          drinkSource.text("Recipe from " + recipeSource + ".");
-          document.getElementById("drink-link").innerHTML = source;
-        };
-      }
-  
+    // var getbutton = $("#savedDrink")
+    // var getSavedDrink = getbutton[0].textContent;
+    // console.log(savedDrinkHistory[i].getSavedDrink.url);
+
+    var drinkName = savedDrinkHistory[i].name;
+    var drinkLink = savedDrinkHistory[i].url;
+    var ingredientsList = savedDrinkHistory[i].ingredientsList;
+    var recipeSource = savedDrinkHistory[i].recipeSource;
+    var drinkImage = savedDrinkHistory[i].drinkImage;
+    var drinkSource = $("#drink-source");
+
+    //display the recipe
+    $("#drink-title").text(drinkName);
+
+    //ingredient list
+    let drinkPic =
+      "<img class='drink-pic rounded-lg' src=" +
+      drinkImage +
+      " alt='Drink image'>";
+    let ingreText = "<ul>";
+    let source =
+      "<a class='drink-ext-link' href=" +
+      drinkLink +
+      " target='_blank'" +
+      ">Click here for complete directions.</a>";
+    for (let i = 0; i < ingredientsList.length; i++) {
+      ingreText += "<li>" + ingredientsList[i] + "</li<br>";
+    }
+    ingreText += "</ul>";
+    //display list
+    document.getElementById("drink-ingredients").innerHTML = ingreText;
+    //a line for the source link
+    document.getElementById("drink-image").innerHTML = drinkPic;
+    drinkSource.text("Recipe from " + recipeSource + ".");
+    document.getElementById("drink-link").innerHTML = source;
+  }
+}
+
 drinkFormEl.addEventListener("submit", drinkFormSubmitHandler);
 
 //running this function here will show all saved drink history in the sidebar upon refresh
 //this function appends the saved recipes to the html sidebar
 
-
 addDrinksToSidebar();
-
