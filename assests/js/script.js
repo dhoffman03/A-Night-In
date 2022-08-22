@@ -95,7 +95,6 @@ function displayMovie(movieResults) {
 }
 
 //search IMDB API
-
 function searchMovieAPI(genreInputVal) {
 
   var partialURL = "https://imdb-api.com/API/AdvancedSearch/"
