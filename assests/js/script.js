@@ -97,23 +97,20 @@ function storeMealRecipe() {
   savedMeals.unshift(savedMeal);
   localStorage.setItem("saved meals", JSON.stringify(savedMeals));
 
-  var savedRecipe = document.createElement("a");
-  savedRecipe.id = "savedMeal";
-  //When saved recipe is clicked, user is directed to the recipe's website
-  savedRecipe.href = savedMeals[0].mealLink;
-  savedRecipe.innerHTML = savedMeals[0].mealTitle;
-
-  //Append recipe to sidebar
-  $("#savedMealRecipes").append(savedRecipe);
+  addMealToSaved()
 }
 
 //append all recipes in local storage
 function addMealToSaved() {
+
+  $("#savedMealRecipes").html("")
+
   for (var i = 0; i < savedMeals.length; i++) {
-    var savedRecipe = document.createElement("a");
-    savedRecipe.id = "savedMeal";
-    savedRecipe.href = savedMeals[i].mealLink;
-    savedRecipe.innerHTML = savedMeals[i].mealTitle;
+    var savedRecipe = $("<a>")
+    savedRecipe.attr("id", "savedMeal")
+    savedRecipe.attr("href", savedMeals[i].mealLink)
+    savedRecipe.attr("target", "_blank")
+    savedRecipe.text(savedMeals[i].mealTitle)
 
     $("#savedMealRecipes").append(savedRecipe);
   }
