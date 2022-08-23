@@ -361,7 +361,8 @@ function saveDrinksToLocal() {
   var saveDrinkToSidebar = document.createElement("a");
   saveDrinkToSidebar.id = "savedDrink";
   saveDrinkToSidebar.class = "savedDrink";
-  saveDrinkToSidebar.href = "javascript:displaySaved();";
+  saveDrinkToSidebar.href = "#";
+  saveDrinkToSidebar.setAttribute("onclick", "displaySaved()");
   saveDrinkToSidebar.innerHTML = savedDrinkHistory[0].name;
 
   document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
@@ -371,8 +372,8 @@ function addDrinksToSidebar() {
   for (let i = 0; i < savedDrinkHistory.length; i++) {
     var saveDrinkToSidebar = document.createElement("a");
     saveDrinkToSidebar.id = "savedDrink";
-    saveDrinkToSidebar.class = "savedDrink";
-    saveDrinkToSidebar.href = "javascript:displaySaved();";
+    saveDrinkToSidebar.href = "#";
+  saveDrinkToSidebar.setAttribute("onclick", "displaySaved()");
     saveDrinkToSidebar.innerHTML = savedDrinkHistory[i].name;
 
     document.getElementById("savedDrinks").appendChild(saveDrinkToSidebar);
@@ -381,8 +382,8 @@ function addDrinksToSidebar() {
 // console.log(JSON.parse(localStorage.getItem("saved drinks"))[1].name);
 
 //this function displays the saved recipes after they are clicked in the sidebar
-function displaySaved() {
-  // console.log($("#savedDrink"));
+function displaySaved(event) {
+  console.log($(event));
 
   // var drinkSelect = document.querySelector("#savedDrink").innerHTML;
   for (let i = 0; i < savedDrinkHistory.length; i++) {
