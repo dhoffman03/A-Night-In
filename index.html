@@ -8,59 +8,98 @@
     <!-- linked css -->
     <link rel="stylesheet" type="text/css" href="./assets/script.js">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Oranienbaum&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./assests/style.css">
     <title>A Night In</title>
 </head>
 
 <body>
     <!-- header -->
-    <header>A Night In</header>
-    <!-- navbar -->
-    <nav>
-        <li><a href="#save"></a>Saved Recipes</li>
-    </nav>
-
+    <header class="h-20 p=6">
+        <h1 class="float-left ml-5 my-5 text-2xl">A Night In</h1>
+        <!-- navbar -->
+        <nav>
+            <li class="float-right mr-5 my-7"><a href="#save"></a>Saved Recipes</li>
+        </nav>
+    </header>
+    <h1 class="text-2xl text-center m-10">Need a night in? We can help you make your own dinner theater: just fill out the searches below, and get ready for the perfect night in!</h1>
     <!-- search boxes -->
     <!-- food search box -->
+<<<<<<< HEAD
     <div>
         <h2>Meal</h2>
         <form class="search-form" id="food-form">
             <select class="format-input" id="food-search">
+=======
+    <section class="search-cards display: flex justify-center space-x-7 mt-20">
+    <div class="foodCard">
+        <form class="search-form p-7 rounded-lg custom-form" id="food-form">
+            <select class="format-input rounded-md custom-input" id="food-search">
+>>>>>>> refs/rewritten/hope-this-works
                 <option value="" disabled selected>Select a Meal Type</option>
                 <option value="dinner">Dinner</option>
                 <option value="snack">Snack</option>
                 <option value="dessert">Dessert</option>
             </select>
-            <button class="btn form">Placeholder</button>
+            <button class="btn form p-2 rounded-lg ml-2 custom-btn">Search</button>
         </form>
     </div>
     <!-- drink search box -->
     <div>
+<<<<<<< HEAD
         <h2>Drink</h2>
         <form class="search-form" id="drink-form">
             <select class="format-input" id="drink-search">
+=======
+        <form class="search-form p-7 rounded-lg custom-form" id="drink-form">
+            <h1 class="text-2xl">Pick Your Drink</h1>
+            <p>Enter your favorite spirit or drink ingredient</p>
+            <br>
+            <input type="text" class="rounded-md p-2" id="drink-search-input" placeholder=" Bourbon">
+            <label for="drink-search-input">Pick ingredient</label>
+            <br>
+            <br>
+            <select class="format-input rounded-md custom-input p-2" id="drink-search">
+>>>>>>> refs/rewritten/hope-this-works
                 <option value="" disabled selected>Select a Drink Type</option>
                 <option value="alcohol">Alcohol-Cocktail</option>
                 <option value="alcohol-free">Alcohol-free</option>
             </select>
-            <button class="btn form">Placeholder</button>
+            <label for="drink-search">Pick Style</label>
+            <button class="btn form p-2 rounded-lg ml-2 custom-btn">Search</button>
         </form>
     </div>
     <!-- movie search box -->
     <div>
+<<<<<<< HEAD
         <h2>Movie</h2>
         <form class="search-form" id="movie-form">
             <select class="format-input" id="movie-search">
+=======
+        <form class="search-form p-7 rounded-lg custom-form" id="movie-form">
+            <select class="format-input rounded-md custom-input" id="movie-search">
+>>>>>>> refs/rewritten/hope-this-works
                 <option value="" disabled selected>Select a Genre</option>
                 <option value="action">Action</option>
                 <option value="adventure">Adventure</option>
                 <option value="comedy">Comedy</option>
             </select>
-            <button class="btn form">Placeholder</button>
+            <button class="btn form p-2 rounded-lg ml-2 custom-btn">Search</button>
         </form>
     </div>
+<<<<<<< HEAD
 <!-- linked javascript -->
 <script src="./assets/tailwind.config.js"></script>
 <script src="./assets/script.js"></script>
+=======
+</section>
+
+<!-- footer -->
+<footer class="text-center leading-10 w-screen fixed bottom-0">© Group 7</footer>
+
+<script src="./assests/tailwind.config.js"></script>
+>>>>>>> refs/rewritten/hope-this-works
 </body>
 
 </html>
